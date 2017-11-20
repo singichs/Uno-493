@@ -1,3 +1,8 @@
 body {
-	background: blue;
+	background: white;
+	text-align: center;
+}
+
+.title {
+	text-align: center;
 }
