@@ -23,4 +23,5 @@ function show_stats_screen() {
 
 function new_game() {
 	console.log("starting a new game");
+	document.location.href = "index.html";
 }
