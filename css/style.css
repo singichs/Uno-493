@@ -1,3 +1,26 @@
 body {
 	background-image: url('https://static.squarespace.com/static/523b0ae9e4b002193859a930/t/5256f1c2e4b0b4a65ea013d2/1381429698367/152119339.jpg');
 }
+
+.main-block {
+	margin-top: 100px;
+}
+
+#form-label {
+	color: white;
+	margin-left: 25%;
+}
+
+#usr {
+	width: 50%;
+	margin-left: 25%;
+}
+
+#submitButton {
+	margin-left: 25%;
+	margin-bottom: 10px;
+}
+
+#uno-image {
+	margin-left: 33%;
+}

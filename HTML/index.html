@@ -7,8 +7,9 @@
 		<link rel="stylesheet"   href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 		<link rel="stylesheet"   href="../css/style.css" />
 
-		<script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	</head>
 	<body>
 		<nav class="navbar navbar-default navbar-fixed-top" id="nav">
@@ -32,11 +33,68 @@
 	                </a>
 	            </li>
 	            <li>
-	                <a href="game.html">Leaderboard</a>
+	                <a href="stats.html">Leaderboard</a>
 	            </li>
 	          </ul>
 	        </div>
+			
 	      </div>
 	    </nav>
+	    <div class="main-block">
+	    	<img src="../img/uno_image.jpg" alt="UNO" width="400" height="200" id="uno-image">
+			<div class="form-group">
+			  <label for="usr" id="form-label">Name:</label>
+			  <input type="text" class="form-control" id="usr">
+			</div>
+			<button class="btn btn-default" id="submitButton" onclick="tempFunction()">Start the Game!</button>
+		</br>
+			<button class="btn btn-default" id="submitButton" data-toggle="modal" data-target="#exampleModal">Instructions</button>
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">UNO Instructions</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        Put intructions for Uno here!
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</br>
+			<button class="btn btn-default" id="submitButton" data-toggle="modal" data-target="#exampleModal2">Customize</button>
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">Customize</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        Customize your game on UNO!
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
 	</body>
 </html>
+
+<script>
+	function tempFunction() {
+		alert("Temporary until game functionality is complete");
+	}
+</script>
