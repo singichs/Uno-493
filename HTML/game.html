@@ -1,6 +1,6 @@
 <html>
-    <head>
-    	<title>Uno!</title>
+	<head>
+		<title>Uno!</title>
 		<link rel="stylesheet" href="../css/game.css">
 		<link rel="stylesheet" href="../css/card.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -12,160 +12,153 @@
 		<script type="text/javascript" src="../js/main.js"></script>
 		<script type="text/javascript" src="../js/game.js"></script>
 		<script type="text/javascript" src="../js/card.js"></script>
-    </head>
-    <body background="https://phandroid.s3.amazonaws.com/wp-content/uploads/2014/12/Ultimate-Material-Lollipop-Collection-407.png">
-        <nav class="navbar navbar-default navbar-fixed-top" id="nav">
-          <div class="container">
-            <div class="navbar-header">
-              <a class="navbar-brand">Uno!</a>
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-            </div>
+	</head>
+	<body background="https://phandroid.s3.amazonaws.com/wp-content/uploads/2014/12/Ultimate-Material-Lollipop-Collection-407.png">
+		<nav class="navbar navbar-default navbar-fixed-top" id="nav">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand">Uno!</a>
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
 
 
-            <div id="navbar" class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li>
-                    <a href="index.html">
-                      <span class="glyphicon glyphicon-home"></span> Home
-                    </a>
-                </li>
-                <li>
-                    <a href="stats.html">Leaderboard</a>
-                </li>
-              </ul>
-            </div>
-            
-          </div>
-        </nav>
-
-		<div class="container">
-			<div class="row">
-			<!-- <div class="col-sm-2"></div> -->
-			<div class="gameboard">
-				<div class="player1">
-					<label type="text" class="player1-control">Player1</label>
-					<label type="text" class="player1-name">Cards Remaining: 4</label>
-					<ul class="player1-cards">
-						<li class="card num-0 blue">
-							<span class="inner">
-								<span class="mark">0</span>
-							</span>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li>
+							<a href="index.html">
+								<span class="glyphicon glyphicon-home"></span> Home
+							</a>
 						</li>
-						<li class="card num-1 blue">
-							<span class="inner">
-								<span class="mark">1</span>
-							</span>
-						</li>
-						<li class="card num-2 blue">
-							<span class="inner">
-								<span class="mark">2</span>
-							</span>
-						</li>
-						<li class="card num-3 blue">
-							<span class="inner">
-								<span class="mark">3</span>
-							</span>
+						<li>
+							<a href="stats.html">Leaderboard</a>
 						</li>
 					</ul>
-				</div>
-				<div class="player2">
-					<label type="text" class="player2-control">Player2</label>
-					<label type="text" class="player2-name">Cards Remaining: 4</label>
-					<ul class="player2-cards">
-						<li class="card num-4 yellow">
-							<span class="inner">
-								<span class="mark">4</span>
-							</span>
-						</li>
-						<li class="card num-5 yellow">
-							<span class="inner">
-								<span class="mark">5</span>
-							</span>
-						</li>
-						<li class="card num-6 yellow">
-							<span class="inner">
-								<span class="mark">6</span>
-							</span>
-						</li>
-						<li class="card num-7 yellow">
-							<span class="inner">
-								<span class="mark">7</span>
-							</span>
-						</li>
-					</ul>
-				</div>
-				<div class="player3">
-					<label type="text" class="player3-control">Player3</label>
-					<label type="text" class="player3-name">Cards Remaining: 4</label>
-					<ul class="player3-cards">
-						<li class="card num-8 red">
-							<span class="inner">
-								<span class="mark">8</span>
-							</span>
-						</li>
-						<li class="card num-9 red">
-							<span class="inner">
-								<span class="mark">9</span>
-							</span>
-						</li>
-						<li class="card num-0 red">
-							<span class="inner">
-								<span class="mark">0</span>
-							</span>
-						</li>
-						<li class="card num-1 red">
-							<span class="inner">
-								<span class="mark">1</span>
-							</span>
-						</li>
-					</ul>
-				</div>
-				<div class="player4">
-					<label type="text" class="player4-control">Player4</label>
-					<label type="text" class="player4-name">Cards Remaining: 4</label>
-					<ul class="player4-cards">
-						<li class="card num-2 green">
-							<span class="inner">
-								<span class="mark">2</span>
-							</span>
-						</li>
-						<li class="card num-3 green">
-							<span class="inner">
-								<span class="mark">3</span>
-							</span>
-						</li>
-						<li class="card num-4 green">
-							<span class="inner">
-								<span class="mark">4</span>
-							</span>
-						</li>
-						<li class="card num-5 green">
-							<span class="inner">
-								<span class="mark">5</span>
-							</span>
-						</li>
-					</ul>
-				</div>
-				<div class="center">
-					<div class="played-cards">
-						<!-- <div class="card num-9 blue">
-							<span class="inner">
-								<span class="mark">9</span>
-							</span>
-						</div> -->
-					</div>
-					<div class="deck-cards">
-						
-					</div>
-					<label class="turn">Your Turn</label>
 				</div>
 			</div>
-			<!-- <div class="col-sm-2"></div> -->
+		</nav>
+
+		<div class="gameboard">
+			<div class="player1">
+				<label type="text" class="player1-control">Player 1</label>
+				<label type="text" class="player1-name">Cards Remaining: 4</label>
+				<ul class="player1-cards">
+					<li class="card num-0 blue">
+						<span class="inner">
+							<span class="mark">0</span>
+						</span>
+					</li>
+					<li class="card num-1 blue">
+						<span class="inner">
+							<span class="mark">1</span>
+						</span>
+					</li>
+					<li class="card num-2 blue">
+						<span class="inner">
+							<span class="mark">2</span>
+						</span>
+					</li>
+					<li class="card num-3 blue">
+						<span class="inner">
+							<span class="mark">3</span>
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="player2">
+				<label type="text" class="player2-control">Player 2</label>
+				<label type="text" class="player2-name">Cards Remaining: 4</label>
+				<ul class="player2-cards">
+					<li class="card num-4 yellow">
+						<span class="inner">
+							<span class="mark">4</span>
+						</span>
+					</li>
+					<li class="card num-5 yellow">
+						<span class="inner">
+							<span class="mark">5</span>
+						</span>
+					</li>
+					<li class="card num-6 yellow">
+						<span class="inner">
+							<span class="mark">6</span>
+						</span>
+					</li>
+					<li class="card num-7 yellow">
+						<span class="inner">
+							<span class="mark">7</span>
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="player3">
+				<label type="text" class="player3-control">Player 3</label>
+				<label type="text" class="player3-name">Cards Remaining: 2</label>
+				<ul class="player3-cards">
+					<li class="card num-8 red">
+						<span class="inner">
+							<span class="mark">8</span>
+						</span>
+					</li>
+					<li class="card num-9 red">
+						<span class="inner">
+							<span class="mark">9</span>
+						</span>
+					</li>
+					<!-- <li class="card num-0 red">
+						<span class="inner">
+							<span class="mark">0</span>
+						</span>
+					</li>
+					<li class="card num-1 red">
+						<span class="inner">
+							<span class="mark">1</span>
+						</span>
+					</li> -->
+				</ul>
+			</div>
+			<div class="player4">
+				<label type="text" class="player4-control">Player 4</label>
+				<label type="text" class="player4-name">Cards Remaining: 4</label>
+				<ul class="player4-cards">
+					<li class="card num-2 green">
+						<span class="inner">
+							<span class="mark">2</span>
+						</span>
+					</li>
+					<li class="card num-3 green">
+						<span class="inner">
+							<span class="mark">3</span>
+						</span>
+					</li>
+					<li class="card num-4 green">
+						<span class="inner">
+							<span class="mark">4</span>
+						</span>
+					</li>
+					<li class="card num-5 green">
+						<span class="inner">
+							<span class="mark">5</span>
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="center">
+				<div class="played-cards">
+					<!-- <div class="card num-9 blue">
+						<span class="inner">
+							<span class="mark">9</span>
+						</span>
+					</div> -->
+				</div>
+				<div class="deck-cards">
+					
+				</div>
+				<label class="turn">Your Turn</label>
 			</div>
 		</div>
 	</body>
