@@ -154,6 +154,11 @@
   content:"9";
 }
 
+.card.num-dog:before,
+.card.num-dog:after{
+  content:"dog";
+}
+
 .card.num-6 .mark:after,
 .card.num-9 .mark:after{
   display:block;
