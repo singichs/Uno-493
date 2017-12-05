@@ -5,7 +5,7 @@ $( document ).ready(function(){
 	initialize_list();
 	reset_deck();
 	deal_cards(7);
-	console.log(list_of_cards.length);
+	play_game();
 	console.log(players);
 
 
@@ -17,6 +17,7 @@ var used_deck = [];	// incase we want to keep track of random stuff
 var players = [];
 var cur_player_index = 0;
 var last_played_card = 0;	// this indexes into list_of_cards
+var game_over = false;
 
 
 class Card {
@@ -97,6 +98,86 @@ function deal_cards(num_cards_in_hand) {
 		}
 	}
 	console.log(players);
+}
+
+
+function play_game() {
+	// turn over top card
+	last_played_card = deck.pop();
+	console.log("last played card: " + list_of_cards[last_played_card].color + " " + list_of_cards[last_played_card].number + " " + list_of_cards[last_played_card].special)
+	while (!game_over) {
+		player_turn();
+	}
+}
+
+function player_turn() {
+	if (deck.length == 0) {
+		deck = used_deck;
+		used_deck = [];
+		reset_deck();
+	}
+
+	if (players[cur_player_index].human) {
+		// highlight playable cards for the player
+
+
+	} else {
+		// look in hand first for: color, number, other, then draw
+		let to_play = -1;
+		let same_number_found = -1;
+		let special_found = -1;
+		let i = 0;
+		let card_found = false;
+		while (i < players[cur_player_index].hand.length && !card_found) {
+			if (list_of_cards[players[cur_player_index].hand[i]].color == list_of_cards[last_played_card].color) {
+				to_play = i;
+				card_found = true;
+			} else if (list_of_cards[players[cur_player_index].hand[i]].number == list_of_cards[last_played_card].number) {
+				same_number_found = i;
+			} else if (list_of_cards[players[cur_player_index].hand[i]].special != "none") {
+				special_found = i;
+			}
+			i++;
+		}
+		console.log("after looking thru hand, we have: ");
+		console.log("to play: " + to_play);
+		console.log(players[cur_player_index].hand[to_play]);
+		// if we didn't find a card of the same color check to see if we have another
+		// playable card
+		if (to_play == -1) {
+			if (same_number_found != -1) {
+				to_play = same_number_found;
+			} else if (special_found != -1) {
+				to_play = special_found;
+			}
+		}
+		// draw a card if we can't play a card, otherwise play it
+		if (to_play == -1) {
+			draw_card(cur_player_index);
+		} else {
+			play_card(cur_player_index, to_play);
+		}
+		game_over = true;
+	}
+	cur_player_index = (cur_player_index + 1) % players.length;
+	
+}
+
+
+function draw_card(player_index) {
+
+}
+
+function play_card(cur_player_index, loc_in_hand) {
+	console.log("currently in hand: ");
+	for (var i = 0; i < players[cur_player_index].hand.length; i++) {
+		console.log(list_of_cards[players[cur_player_index].hand[i]].color);
+	}
+	console.log(players[cur_player_index].name + " plays a " + list_of_cards[players[cur_player_index].hand[loc_in_hand]].color + " " + list_of_cards[players[cur_player_index].hand[loc_in_hand]].number + " " + list_of_cards[players[cur_player_index].hand[loc_in_hand]].special)
+	// console.log(list_of_cards[players[cur_player_index].hand[loc_in_hand]].color)
+	// console.log(list_of_cards[players[cur_player_index].hand[loc_in_hand]].number);
+	used_deck.push(players[cur_player_index].hand[loc_in_hand]);
+	players[cur_player_index].hand.splice(loc_in_hand, 1);
 }
 
 
