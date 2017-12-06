@@ -172,21 +172,18 @@ function player_turn() {
 
 function draw_card(player_index, num_to_draw) {
 	// TODO add in actual loop  that draws multiple cards
-	// for (var i = 0; i < players[cur_player_index].hand.length; i++) {
-	// 	//.console.log(list_of_cards[players[cur_player_index].hand[i]].color + " " + list_of_cards[players[cur_player_index].hand[i]].number + " " + list_of_cards[players[cur_player_index].hand[i]].special);
-	// }
 	for (var i = 0; i < num_to_draw; i++) {
 		players[player_index].hand.push(deck.pop());
 	}
 	console.log("draw a card bro");
-	cur_player_index = (cur_player_index + 1) % players.length;
+	// cur_player_index = (cur_player_index + 1) % players.length;
 }
 
-function play_card(cur_player_index, loc_in_hand) {
+function play_card(cur_player_indexx, loc_in_hand) {
 	// console.log("currently in hand: ");
-	for (var i = 0; i < players[cur_player_index].hand.length; i++) {
-		//console.log(list_of_cards[players[cur_player_index].hand[i]].color + " " + list_of_cards[players[cur_player_index].hand[i]].number + " " + list_of_cards[players[cur_player_index].hand[i]].special);
-	}
+	// for (var i = 0; i < players[cur_player_index].hand.length; i++) {
+	// 	//console.log(list_of_cards[players[cur_player_index].hand[i]].color + " " + list_of_cards[players[cur_player_index].hand[i]].number + " " + list_of_cards[players[cur_player_index].hand[i]].special);
+	// }
 	console.log(players[cur_player_index].name + " plays a " + list_of_cards[players[cur_player_index].hand[loc_in_hand]].color + " " + list_of_cards[players[cur_player_index].hand[loc_in_hand]].number + " " + list_of_cards[players[cur_player_index].hand[loc_in_hand]].special)
 	// console.log(list_of_cards[players[cur_player_index].hand[loc_in_hand]].color)
 	// console.log(list_of_cards[players[cur_player_index].hand[loc_in_hand]].number);
@@ -205,6 +202,7 @@ function play_card(cur_player_index, loc_in_hand) {
 		console.log("game over");
 		game_over = true;
 	}
+
 	if (list_of_cards[last_played_card].special == "draw-2") {
 		console.log("next player draws 2");
 		draw_card((cur_player_index + 1) % players.length, 2);
@@ -213,6 +211,7 @@ function play_card(cur_player_index, loc_in_hand) {
 		console.log("next player draws 4");
 		draw_card((cur_player_index + 1) % players.length, 4);
 		cur_player_index = (cur_player_index + 1) % players.length;
+
 	}
 	cur_player_index = (cur_player_index + 1) % players.length;
 }
