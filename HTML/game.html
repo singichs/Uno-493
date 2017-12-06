@@ -102,7 +102,7 @@
 			<div class="player3">
 				<label type="text" class="player3-control">Cooter</label></br>
 				<label type="text" class="player3-name" id="p3cards">Cards Remaining: </label>
-				<ul id="player3-cards" class="player3-cards">
+				<ul id="player3-cards" class="player3-cards" ondrop="drop(event)" ondragover="allowDrop(event)">
 					<li class="card num-8 red">
 						<span class="inner">
 							<span class="mark">8</span>
@@ -131,7 +131,7 @@
 				<ul id="player4-cards" class="player4-cards">
 					<li class="card num-2 green">
 						<span class="inner">
-							<span class="mark">2</span>
+							<span class="mark" id="testing" draggable="true" ondragstart="drag(event)">2</span>
 						</span>
 					</li>
 					<li class="card num-3 green">
@@ -152,12 +152,12 @@
 				</ul>
 			</div>
 			<div class="center">
-				<div class="played-cards">
-					<!-- <div class="card num-9 blue">
+				<div class="played-cards" ondrop="drop(event)" ondragover="allowDrop(event)">
+					<div class="card num-9 blue" id="centerCard">
 						<span class="inner">
 							<span class="mark">9</span>
 						</span>
-					</div> -->
+					</div>
 				</div>
 				<div class="deck-cards">
 					
