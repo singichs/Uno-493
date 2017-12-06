@@ -18,6 +18,7 @@ var players = [];
 var cur_player_index = 0;
 var last_played_card = 0;	// this indexes into list_of_cards
 var game_over = false;
+var cur_color = "none";		// this is used if a wild is played
 
 
 class Card {
@@ -118,6 +119,7 @@ function deal_cards(num_cards_in_hand) {
 
 function play_game() {
 	// turn over top card
+	// TO DO: make sure the top card isn't a special card
 	last_played_card = deck.pop();
 	console.log("last played card: " + list_of_cards[last_played_card].color + " " + list_of_cards[last_played_card].number + " " + list_of_cards[last_played_card].special)
 	while (!game_over) {
@@ -135,9 +137,10 @@ function player_turn() {
 	if (players[cur_player_index].human) {
 		// highlight playable cards for the player
 
-
+		cur_player_index = (cur_player_index + 1) % players.length;
 	} else {
 		// look in hand first for: color, number, other, then draw
+		// have some other logic for wilds (replace the list_of_cards lookup with just cur_color variable);
 		let to_play = -1;
 		let same_number_found = -1;
 		let special_found = -1;
@@ -147,53 +150,94 @@ function player_turn() {
 			if (list_of_cards[players[cur_player_index].hand[i]].color == list_of_cards[last_played_card].color) {
 				to_play = i;
 				card_found = true;
-			} else if (list_of_cards[players[cur_player_index].hand[i]].number == list_of_cards[last_played_card].number) {
+			} else if (list_of_cards[players[cur_player_index].hand[i]].number == list_of_cards[last_played_card].number && list_of_cards[last_played_card].number != "none") {
 				same_number_found = i;
 			} else if (list_of_cards[players[cur_player_index].hand[i]].special != "none") {
+				if (list_of_cards[last_played_card].special == "none" || list_of_cards[last_played_card].special == list_of_cards[players[cur_player_index].hand[i]].special)
 				special_found = i;
 			}
 			i++;
 		}
-		console.log("after looking thru hand, we have: ");
-		console.log("to play: " + to_play);
-		console.log(players[cur_player_index].hand[to_play]);
+		// console.log("after looking thru hand, we have: ");
+		// console.log("to play: " + to_play);
+		// console.log(players[cur_player_index].hand[to_play]);
 		// if we didn't find a card of the same color check to see if we have another
 		// playable card
 		if (to_play == -1) {
 			if (same_number_found != -1) {
+				// console.log("same number found: " + same_number_found);
 				to_play = same_number_found;
 			} else if (special_found != -1) {
+				// console.log("special found: " + special_found);
 				to_play = special_found;
 			}
 		}
 		// draw a card if we can't play a card, otherwise play it
 		if (to_play == -1) {
-			draw_card(cur_player_index);
+			draw_card(cur_player_index, 1);
 		} else {
 			play_card(cur_player_index, to_play);
 		}
-		game_over = true;
+		// game_over = true;
 	}
-	cur_player_index = (cur_player_index + 1) % players.length;
+	// cur_player_index = (cur_player_index + 1) % players.length;
 	
 }
 
 
-function draw_card(player_index) {
-
+function draw_card(player_index, num_to_draw) {
+	// TODO add in actual loop  that draws multiple cards
+	// for (var i = 0; i < players[cur_player_index].hand.length; i++) {
+	// 	//.console.log(list_of_cards[players[cur_player_index].hand[i]].color + " " + list_of_cards[players[cur_player_index].hand[i]].number + " " + list_of_cards[players[cur_player_index].hand[i]].special);
+	// }
+	for (var i = 0; i < num_to_draw; i++) {
+		players[player_index].hand.push(deck.pop());
+	}
+	console.log("draw a card bro");
+	cur_player_index = (cur_player_index + 1) % players.length;
 }
 
 function play_card(cur_player_index, loc_in_hand) {
-	console.log("currently in hand: ");
+	// console.log("currently in hand: ");
 	for (var i = 0; i < players[cur_player_index].hand.length; i++) {
-		console.log(list_of_cards[players[cur_player_index].hand[i]].color);
+		//console.log(list_of_cards[players[cur_player_index].hand[i]].color + " " + list_of_cards[players[cur_player_index].hand[i]].number + " " + list_of_cards[players[cur_player_index].hand[i]].special);
 	}
 	console.log(players[cur_player_index].name + " plays a " + list_of_cards[players[cur_player_index].hand[loc_in_hand]].color + " " + list_of_cards[players[cur_player_index].hand[loc_in_hand]].number + " " + list_of_cards[players[cur_player_index].hand[loc_in_hand]].special)
 	// console.log(list_of_cards[players[cur_player_index].hand[loc_in_hand]].color)
 	// console.log(list_of_cards[players[cur_player_index].hand[loc_in_hand]].number);
-	used_deck.push(players[cur_player_index].hand[loc_in_hand]);
+	used_deck.push(last_played_card);
+	last_played_card = players[cur_player_index].hand[loc_in_hand];
+	if (list_of_cards[last_played_card].color == "none" && list_of_cards[last_played_card].special != "none") {
+		list_of_cards[last_played_card].color = get_color(cur_player_index);
+	}
+	
 	players[cur_player_index].hand.splice(loc_in_hand, 1);
+
+	// write in the case for +2 or + 4
+	if (players[cur_player_index].hand.length == 1) {
+		console.log("UNO!");
+	} else if (players[cur_player_index].hand.length == 0) {
+		console.log("game over");
+		game_over = true;
+	}
+	if (list_of_cards[last_played_card].special == "draw-2") {
+		console.log("next player draws 2");
+		draw_card((cur_player_index + 1) % players.length, 2);
+		cur_player_index = (cur_player_index + 1) % players.length;
+	} else if (list_of_cards[last_played_card].special == "wild-draw-4") {
+		console.log("next player draws 4");
+		draw_card((cur_player_index + 1) % players.length, 4);
+		cur_player_index = (cur_player_index + 1) % players.length;
+	}
+	cur_player_index = (cur_player_index + 1) % players.length;
 }
 
-
+function get_color(cur_player_index) {
+	if (players[cur_player_index].human) {
+		// have a pop up ask them for color
+	} else {
+		// just choose red for rn - run through and choose the color with most 
+		return "red";
+	}
+}
 
