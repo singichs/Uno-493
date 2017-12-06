@@ -36,6 +36,21 @@ class Player {
 	}
 }
 
+function drag(ev) {
+	ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+	ev.preventDefault();
+	var data = ev.dataTransfer.getData("text");
+	//document.getElementById(data).classList.remove("")
+	ev.target.replaceChild(document.getElementById(data), document.getElementById("centerCard"));
+}
+
+function allowDrop(ev) {
+	ev.preventDefault();
+}
+
 // assuming for right now that first player is human and 3 cpu
 function initialize_players(num_cpu) {
 	// this should be some locally set variable for player's name
