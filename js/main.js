@@ -13,12 +13,13 @@ $( document ).ready(function(){
 
 var list_of_cards = [];
 var deck = [];
-var used_deck = [];	// incase we want to keep track of random stuff
+var used_deck = [];	// used for reshuffling deck in middle of game
 var players = [];
 var cur_player_index = 0;
 var last_played_card = 0;	// this indexes into list_of_cards
 var game_over = false;
 var cur_color = "none";		// this is used if a wild is played
+var clockwise_dir = true;
 
 
 class Card {
@@ -62,7 +63,6 @@ function initialize_players(num_cpu) {
 	players.push(new Player("Cooter", false));
 }
 
-// turns out there are 108 cards in an UNO deck
 function initialize_list() {
 	let colors = ["blue", "red", "green", "yellow"];
 	for (var i = 0; i < colors.length; i++) {
@@ -133,11 +133,11 @@ function player_turn() {
 		used_deck = [];
 		reset_deck();
 	}
-
 	if (players[cur_player_index].human) {
 		// highlight playable cards for the player
 
-		cur_player_index = (cur_player_index + 1) % players.length;
+
+		get_next_player();
 	} else {
 		// look in hand first for: color, number, other, then draw
 		// have some other logic for wilds (replace the list_of_cards lookup with just cur_color variable);
@@ -158,17 +158,12 @@ function player_turn() {
 			}
 			i++;
 		}
-		// console.log("after looking thru hand, we have: ");
-		// console.log("to play: " + to_play);
-		// console.log(players[cur_player_index].hand[to_play]);
 		// if we didn't find a card of the same color check to see if we have another
 		// playable card
 		if (to_play == -1) {
 			if (same_number_found != -1) {
-				// console.log("same number found: " + same_number_found);
 				to_play = same_number_found;
 			} else if (special_found != -1) {
-				// console.log("special found: " + special_found);
 				to_play = special_found;
 			}
 		}
@@ -176,12 +171,9 @@ function player_turn() {
 		if (to_play == -1) {
 			draw_card(cur_player_index, 1);
 		} else {
-			play_card(cur_player_index, to_play);
+			play_card(to_play);
 		}
-		// game_over = true;
-	}
-	// cur_player_index = (cur_player_index + 1) % players.length;
-	
+	}	
 }
 
 
@@ -194,7 +186,7 @@ function draw_card(player_index, num_to_draw) {
 	// cur_player_index = (cur_player_index + 1) % players.length;
 }
 
-function play_card(cur_player_indexx, loc_in_hand) {
+function play_card(loc_in_hand) {
 	// console.log("currently in hand: ");
 	// for (var i = 0; i < players[cur_player_index].hand.length; i++) {
 	// 	//console.log(list_of_cards[players[cur_player_index].hand[i]].color + " " + list_of_cards[players[cur_player_index].hand[i]].number + " " + list_of_cards[players[cur_player_index].hand[i]].special);
@@ -205,7 +197,7 @@ function play_card(cur_player_indexx, loc_in_hand) {
 	used_deck.push(last_played_card);
 	last_played_card = players[cur_player_index].hand[loc_in_hand];
 	if (list_of_cards[last_played_card].color == "none" && list_of_cards[last_played_card].special != "none") {
-		list_of_cards[last_played_card].color = get_color(cur_player_index);
+		list_of_cards[last_played_card].color = get_color();
 	}
 	
 	players[cur_player_index].hand.splice(loc_in_hand, 1);
@@ -221,17 +213,26 @@ function play_card(cur_player_indexx, loc_in_hand) {
 	if (list_of_cards[last_played_card].special == "draw-2") {
 		console.log("next player draws 2");
 		draw_card((cur_player_index + 1) % players.length, 2);
-		cur_player_index = (cur_player_index + 1) % players.length;
+		get_next_player();
 	} else if (list_of_cards[last_played_card].special == "wild-draw-4") {
 		console.log("next player draws 4");
 		draw_card((cur_player_index + 1) % players.length, 4);
-		cur_player_index = (cur_player_index + 1) % players.length;
-
+		get_next_player();
+	} else if (list_of_cards[last_played_card].special == "reverse") {
+		if (clockwise_dir) {
+			clockwise_dir = false;
+		} else {
+			clockwise_dir = true;
+		}
+	} else if (list_of_cards[last_played_card].special == "skip") {
+		get_next_player();
 	}
-	cur_player_index = (cur_player_index + 1) % players.length;
+
+
+	get_next_player();
 }
 
-function get_color(cur_player_index) {
+function get_color() {
 	if (players[cur_player_index].human) {
 		// have a pop up ask them for color
 	} else {
@@ -239,4 +240,22 @@ function get_color(cur_player_index) {
 		return "red";
 	}
 }
+
+// used to determine which player gets the next move
+function get_next_player() {
+	if (clockwise_dir) {
+		cur_player_index = (cur_player_index + 1) % players.length;
+	} else {
+		cur_player_index = (cur_player_index - 1) % players.length;
+		if (cur_player_index == -1) {
+			cur_player_index = players.length - 1;
+		}
+	}
+}
+
+
+
+
+
+
 
