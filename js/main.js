@@ -8,6 +8,12 @@ $( document ).ready(function(){
 	play_game();
 	console.log(players);
 
+	// gonna have to change this to the ondrag event
+	$("#player2-cards").click(function() {
+		console.log("clicked");
+		get_next_player();
+		play_game();
+	})
 
 });
 
@@ -95,6 +101,10 @@ function initialize_list() {
 function reset_deck() {
 	deck = Array.from(Array(108).keys());
 	deck = shuffle(deck);
+	// reset the wild cards to have no color associated with them
+	for (var i = 99; i < 108; i++) {
+		list_of_cards[i].color = "none";
+	}
 }
 
 // function below ripped directly from stack overflow page
@@ -114,17 +124,24 @@ function deal_cards(num_cards_in_hand) {
 		}
 	}
 	console.log(players);
-
+	last_played_card = deck.pop();
+	console.log("last played card: " + list_of_cards[last_played_card].color + " " + list_of_cards[last_played_card].number + " " + list_of_cards[last_played_card].special)
+	
 	display_cards();
 }
+
+
 
 
 function play_game() {
 	// turn over top card
 	// TO DO: make sure the top card isn't a special card
-	last_played_card = deck.pop();
-	console.log("last played card: " + list_of_cards[last_played_card].color + " " + list_of_cards[last_played_card].number + " " + list_of_cards[last_played_card].special)
-	while (!game_over) {
+	// while (!game_over) {
+	// 	player_turn();
+	// }
+	console.log("player index: " + cur_player_index);
+	while (!players[cur_player_index].human) {
+		console.log("waiting for player");
 		player_turn();
 	}
 }
@@ -137,7 +154,10 @@ function player_turn() {
 	}
 	if (players[cur_player_index].human) {
 		// highlight playable cards for the player
+		get_player_card()
+		// .then(function(response) {
 
+		// })
 
 		get_next_player();
 	} else {
@@ -208,7 +228,7 @@ function play_card(loc_in_hand) {
 	if (players[cur_player_index].hand.length == 1) {
 		console.log("UNO!");
 	} else if (players[cur_player_index].hand.length == 0) {
-		console.log("game over");
+		console.log("game over, " + players[cur_player_index].name + " is the winner!");
 		game_over = true;
 	}
 
@@ -229,8 +249,6 @@ function play_card(loc_in_hand) {
 	} else if (list_of_cards[last_played_card].special == "skip") {
 		get_next_player();
 	}
-
-
 	get_next_player();
 }
 
@@ -255,6 +273,11 @@ function get_next_player() {
 	}
 }
 
+function get_player_card() {
+	if (players[cur_player_index].human) {
+		console.log("human time boi");
+	}
+}
 
 
 function display_cards() {
