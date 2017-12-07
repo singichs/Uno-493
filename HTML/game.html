@@ -175,66 +175,66 @@
 				}
 				$(ui.helper[0]).remove();
 				// pass in event.target into the play function that click currently has
-				$(this)
-					.find("li")
-						.html();
-				// var cardindex = ui.helper[0].id;
+				// $(this)
+				// 	.find("li")
+				// 		.html();
+				// // var cardindex = ui.helper[0].id;
 
-				// definitely should break this up into a function(s)
+				// // definitely should break this up into a function(s)
 
-				var cardcolor = list_of_cards[cardindex].color;
-				var cardnumber = list_of_cards[cardindex].number;
+				// var cardcolor = list_of_cards[cardindex].color;
+				// var cardnumber = list_of_cards[cardindex].number;
 
-				var userhand = document.getElementById("droppable");
-				userhand.innerHTML = '';
-				var card = document.createElement("li");
+				// var userhand = document.getElementById("droppable");
+				// userhand.innerHTML = '';
+				// var card = document.createElement("li");
 
-				if (cardnumber == "none") //special cards
-				{
-					card.className = "card " + "draggable";
-					card.id = cardindex;
-					var cardimage = document.createElement("img");
-					cardimage.setAttribute('height', '140px');
-					cardimage.setAttribute('width', '105px');
+				// if (cardnumber == "none") //special cards
+				// {
+				// 	card.className = "card " + "draggable";
+				// 	card.id = cardindex;
+				// 	var cardimage = document.createElement("img");
+				// 	cardimage.setAttribute('height', '140px');
+				// 	cardimage.setAttribute('width', '105px');
 
-					var specialtype = list_of_cards[cardindex].special;
+				// 	var specialtype = list_of_cards[cardindex].special;
 
-					if (specialtype == "wild-draw-4")
-					{
-						cardimage.setAttribute('src', '../img/wild-draw-4.png');
-					}
-					else if (specialtype == "wild")
-					{
+				// 	if (specialtype == "wild-draw-4")
+				// 	{
+				// 		cardimage.setAttribute('src', '../img/wild-draw-4.png');
+				// 	}
+				// 	else if (specialtype == "wild")
+				// 	{
 
-						cardimage.setAttribute('src', '../img/wild.png');
+				// 		cardimage.setAttribute('src', '../img/wild.png');
 			
-					}
-					else
-					{
-						console.log(cardcolor + " " + specialtype);
+				// 	}
+				// 	else
+				// 	{
+				// 		console.log(cardcolor + " " + specialtype);
 
-						cardimage.setAttribute('src', '../img/' + cardcolor + specialtype + '.png');
-					}
-					card.appendChild(cardimage);
-					userhand.appendChild(card);
+				// 		cardimage.setAttribute('src', '../img/' + cardcolor + specialtype + '.png');
+				// 	}
+				// 	card.appendChild(cardimage);
+				// 	userhand.appendChild(card);
 
-				}
-				else
-				{
+				// }
+				// else
+				// {
 
-					// console.log(cardcolor + " " + cardnumber);
+				// 	// console.log(cardcolor + " " + cardnumber);
 
-					card.className = "card num-" + cardnumber + " " + cardcolor + " draggable";
-					card.id = cardindex;
-					var innerspan = document.createElement("span");
-					innerspan.className = "inner";
-					var markspan = document.createElement("span");
-					markspan.className = "mark";
-					markspan.innerHTML = cardnumber;
-					innerspan.appendChild(markspan);
-					card.appendChild(innerspan);
-					userhand.appendChild(card);
-				}
+				// 	card.className = "card num-" + cardnumber + " " + cardcolor + " draggable";
+				// 	card.id = cardindex;
+				// 	var innerspan = document.createElement("span");
+				// 	innerspan.className = "inner";
+				// 	var markspan = document.createElement("span");
+				// 	markspan.className = "mark";
+				// 	markspan.innerHTML = cardnumber;
+				// 	innerspan.appendChild(markspan);
+				// 	card.appendChild(innerspan);
+				// 	userhand.appendChild(card);
+				// }
 			}
 		});
 	});

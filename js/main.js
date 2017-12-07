@@ -8,15 +8,6 @@ $( document ).ready(function(){
 	play_game();
 	console.log(players);
 
-	// gonna have to change this to the ondrag event
-	$("#player2-cards").click(function() {
-		console.log("clicked");
-		// if (!game_over) {
-		// 	get_next_player();
-		// 	play_game();
-		// }
-	})
-
 });
 
 var list_of_cards = [];
@@ -147,7 +138,7 @@ function play_game() {
 	// }
 	while (!players[cur_player_index].human && !game_over) {
 		// parameter should only matter for human player
-		console.log("who's turn: " + players[cur_player_index].name);
+		// console.log("who's turn: " + players[cur_player_index].name);
 		player_turn(-1);
 		update_cards_remaining();
 	}
@@ -211,7 +202,6 @@ function draw_card(player_index, card_index) {
 	for (var i = 0; i < num_to_draw; i++) {
 		players[player_index].hand.push(deck.pop());
 	}
-	console.log("draw a card bro");
 	get_next_player();
 
 	// cur_player_index = (cur_player_index + 1) % players.length;
@@ -236,6 +226,7 @@ function play_card(loc_in_list) {
 	var loc_in_hand = players[cur_player_index].hand.indexOf(loc_in_list);
 	// console.log("loc in hand: " + loc_in_hand);
 	players[cur_player_index].hand.splice(loc_in_hand, 1);
+	add_to_used_stack(loc_in_list);
 
 	// write in the case for +2 or + 4
 	if (players[cur_player_index].hand.length == 1) {
@@ -244,15 +235,15 @@ function play_card(loc_in_list) {
 		console.log("game over, " + players[cur_player_index].name + " is the winner!");
 		game_over = true;
 	}
-
-	if (list_of_cards[last_played_card].special == "draw-2") {
+	// console.log("checking specials: " + list_of_cards[last_played_card].special);
+	if (list_of_cards[last_played_card].special == "draw2") {
 		console.log("next player draws 2");
 		draw_card((cur_player_index + 1) % players.length, 2);
-		get_next_player();
+		// get_next_player();
 	} else if (list_of_cards[last_played_card].special == "wild-draw-4") {
 		console.log("next player draws 4");
 		draw_card((cur_player_index + 1) % players.length, 4);
-		get_next_player();
+		// get_next_player();
 	} else if (list_of_cards[last_played_card].special == "reverse") {
 		if (clockwise_dir) {
 			clockwise_dir = false;
@@ -278,7 +269,7 @@ function get_color() {
 function get_next_player() {
 	if (clockwise_dir) {
 		cur_player_index = (cur_player_index + 1) % players.length;
-		console.log("next player cur_index: " + cur_player_index);
+		// console.log("next player cur_index: " + cur_player_index);
 	} else {
 		cur_player_index = (cur_player_index - 1) % players.length;
 		if (cur_player_index == -1) {
@@ -286,13 +277,6 @@ function get_next_player() {
 		}
 	}
 }
-
-function get_player_card() {
-	if (players[cur_player_index].human) {
-		console.log("human time boi");
-	}
-}
-
 
 function display_cards() {
 
@@ -368,5 +352,61 @@ function update_cards_remaining() {
 	}
 }
 
+function add_to_used_stack(card_index_to_add) {
+	//console.log("should add to used_stack");
+	// var cardindex = card_index_to_add;
 
+	var cardcolor = list_of_cards[card_index_to_add].color;
+	var cardnumber = list_of_cards[card_index_to_add].number;
+
+	var userhand = document.getElementById("droppable");
+	userhand.innerHTML = '';
+	var card = document.createElement("li");
+
+	if (cardnumber == "none") //special cards
+	{
+		card.className = "card " + "draggable";
+		card.id = card_index_to_add;
+		var cardimage = document.createElement("img");
+		cardimage.setAttribute('height', '140px');
+		cardimage.setAttribute('width', '105px');
+
+		var specialtype = list_of_cards[card_index_to_add].special;
+
+		if (specialtype == "wild-draw-4")
+		{
+			cardimage.setAttribute('src', '../img/wild-draw-4.png');
+		}
+		else if (specialtype == "wild")
+		{
+
+			cardimage.setAttribute('src', '../img/wild.png');
+
+		}
+		else
+		{
+			// console.log(cardcolor + " " + specialtype);
+
+			cardimage.setAttribute('src', '../img/' + cardcolor + specialtype + '.png');
+		}
+		card.appendChild(cardimage);
+		userhand.appendChild(card);
+
+	}
+	else
+	{
+
+		card.className = "card num-" + cardnumber + " " + cardcolor + " draggable";
+		card.id = card_index_to_add;
+		var innerspan = document.createElement("span");
+		innerspan.className = "inner";
+		var markspan = document.createElement("span");
+		markspan.className = "mark";
+		markspan.innerHTML = cardnumber;
+		innerspan.appendChild(markspan);
+		card.appendChild(innerspan);
+		userhand.appendChild(card);
+	}
+				
+}
 
