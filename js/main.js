@@ -50,7 +50,6 @@ function drag(ev) {
 function drop(ev) {
 	ev.preventDefault();
 	var data = ev.dataTransfer.getData("text");
-	//document.getElementById(data).classList.remove("")
 	ev.target.replaceChild(document.getElementById(data), document.getElementById("centerCard"));
 }
 
@@ -303,7 +302,7 @@ function display_cards() {
 
 				if (cardnumber == "none") //special cards
 				{
-					card.className = "card";
+					card.className = "card " + "draggable";
 					var cardimage = document.createElement("img");
 					cardimage.setAttribute('height', '140px');
 					cardimage.setAttribute('width', '105px');
@@ -326,7 +325,6 @@ function display_cards() {
 
 						cardimage.setAttribute('src', '../img/' + cardcolor + specialtype + '.png');
 					}
-
 					card.appendChild(cardimage);
 					userhand.appendChild(card);
 
@@ -336,13 +334,12 @@ function display_cards() {
 
 					console.log(cardcolor + " " + cardnumber);
 
-					card.className = "card num-" + cardnumber + " " + cardcolor;
+					card.className = "card num-" + cardnumber + " " + cardcolor + " draggable";
 					var innerspan = document.createElement("span");
 					innerspan.className = "inner";
 					var markspan = document.createElement("span");
 					markspan.className = "mark";
 					markspan.innerHTML = cardnumber;
-
 					innerspan.appendChild(markspan);
 					card.appendChild(innerspan);
 					userhand.appendChild(card);
