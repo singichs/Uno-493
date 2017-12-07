@@ -97,6 +97,9 @@
 <script>
 	function tempFunction() {
 		let name = document.getElementById("usr").value;
+		if(name == ""){
+			name = "You";
+		}
 		location.href = "game.html?name=" + name;
 	}
 </script>
