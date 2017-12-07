@@ -434,7 +434,6 @@ function update_playable_cards(human_index) {
 			card_li.removeClass("ui-draggable");
 			card_li.removeClass("ui-draggable-handle");
 		}
-		console.log(player_card_valid(players[human_index].hand[i]));
 	}
 }
 
