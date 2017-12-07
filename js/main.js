@@ -44,7 +44,6 @@ function drag(ev) {
 function drop(ev) {
 	ev.preventDefault();
 	var data = ev.dataTransfer.getData("text");
-	//document.getElementById(data).classList.remove("")
 	ev.target.replaceChild(document.getElementById(data), document.getElementById("centerCard"));
 }
 

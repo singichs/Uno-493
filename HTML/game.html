@@ -4,6 +4,7 @@
 		<link rel="stylesheet" href="../css/game.css">
 		<link rel="stylesheet" href="../css/card.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 		<!-- Javascript Links -->
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
@@ -129,9 +130,10 @@
 				<label type="text" class="player4-control" id="currentUsr">Player 4</label></br>
 				<label type="text" class="player4-name" id="p4cards">Cards Remaining: </label>
 				<ul id="player4-cards" class="player4-cards">
-					<li class="card num-2 green">
+					<!-- <li class="card num-2 green" draggable="true" ondragstart="drag(event)"> -->
+					<li class="card num-2 green" id="draggable" style="z-index: 100">
 						<span class="inner">
-							<span class="mark" id="testing" draggable="true" ondragstart="drag(event)">2</span>
+							<span class="mark" id="testing">2</span>
 						</span>
 					</li>
 					<li class="card num-3 green">
@@ -152,13 +154,14 @@
 				</ul>
 			</div>
 			<div class="center">
-				<div class="played-cards" ondrop="drop(event)" ondragover="allowDrop(event)">
-					<div class="card num-9 blue" id="centerCard">
+				<!-- <ul class="played-cards" ondrop="drop(event)" ondragover="allowDrop(event)"> -->
+				<ul class="played-cards" id="droppable">
+					<li class="card num-9 blue" id="centerCard" style="z-index: 1">
 						<span class="inner">
 							<span class="mark">9</span>
 						</span>
-					</div>
-				</div>
+					</li>
+				</ul>
 				<div class="deck-cards">
 					
 				</div>
@@ -190,6 +193,17 @@
 	document.getElementById("p2cards").innerHTML += bobCards;
 	document.getElementById("p3cards").innerHTML += cooterCards;
 	document.getElementById("p4cards").innerHTML += usrCards;
+
+	$(function() {
+		$("#draggable").draggable();
+		$("#droppable").droppable({
+			drop: function (event, ui) {
+				$(this)
+					.find("li")
+						.html();
+			}
+		});
+	});
 }
 </script>
 
