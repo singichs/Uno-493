@@ -142,12 +142,12 @@ function play_game() {
 	// while (!game_over) {
 	// 	player_turn();
 	// }
-	console.log("player index: " + cur_player_index);
+	
 	while (!players[cur_player_index].human) {
-		console.log("waiting for player");
 		player_turn();
 		update_cards_remaining();
 	}
+	console.log("waiting for player");
 }
 
 function player_turn() {
