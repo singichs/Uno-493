@@ -126,8 +126,12 @@ function deal_cards(num_cards_in_hand) {
 	console.log(players);
 	last_played_card = deck.pop();
 	console.log("last played card: " + list_of_cards[last_played_card].color + " " + list_of_cards[last_played_card].number + " " + list_of_cards[last_played_card].special)
+	// set number of cards remaining in hand
+	// player1-cards
 	
+	console.log("cards displayed");
 	display_cards();
+	update_cards_remaining();
 }
 
 
@@ -143,6 +147,7 @@ function play_game() {
 	while (!players[cur_player_index].human) {
 		console.log("waiting for player");
 		player_turn();
+		update_cards_remaining();
 	}
 }
 
@@ -346,8 +351,12 @@ function display_cards() {
 			}
 		}
 	}
+}
 
-
+function update_cards_remaining() {
+	for (var i = 0; i < players.length; i++) {
+		$("#p" + (i + 1) + "cards").text(players[i].hand.length);
+	}
 }
 
 
