@@ -21,7 +21,7 @@ var last_played_card = 0;	// this indexes into list_of_cards
 var game_over = false;
 var cur_color = "none";		// this is used if a wild is played
 var clockwise_dir = true;
-var num_to_draw = 7;
+// var num_to_drawF = 7;
 
 class Card {
 	constructor(color, number, special) {
@@ -190,6 +190,7 @@ function player_turn(cardindex) {
 		// draw a card if we can't play a card, otherwise play it
 		if (to_play == -1) {
 			draw_card(cur_player_index, 1);
+			// console.log("can't play anything, draw a card");
 		} else {
 			to_play = players[cur_player_index].hand[to_play];
 			// console.log("to_play: " + to_play);
@@ -199,14 +200,13 @@ function player_turn(cardindex) {
 }
 
 
-function draw_card(player_index, card_index) {
+function draw_card(player_index, num_to_draw) {
 	// TODO add in actual loop  that draws multiple cards
 	for (var i = 0; i < num_to_draw; i++) {
 		players[player_index].hand.push(deck.pop());
 	}
-	get_next_player();
-
-	// cur_player_index = (cur_player_index + 1) % players.length;
+	// console.log("cards in hand for " + players[cur_player_index].name + " " + players[cur_player_index].hand.length);
+	get_next_player()
 }
 
 function play_card(loc_in_list) {
@@ -215,8 +215,6 @@ function play_card(loc_in_list) {
 	// 	//console.log(list_of_cards[players[cur_player_index].hand[i]].color + " " + list_of_cards[players[cur_player_index].hand[i]].number + " " + list_of_cards[players[cur_player_index].hand[i]].special);
 	// }
 	console.log(players[cur_player_index].name + " plays a " + list_of_cards[loc_in_list].color + " " + list_of_cards[loc_in_list].number + " " + list_of_cards[loc_in_list].special)
-	// console.log(list_of_cards[players[cur_player_index].hand[loc_in_hand]].color)
-	// console.log(list_of_cards[players[cur_player_index].hand[loc_in_hand]].number);
 	used_deck.push(last_played_card);
 	last_played_card = loc_in_list;
 	if (list_of_cards[last_played_card].color == "none" && list_of_cards[last_played_card].special != "none") {
@@ -226,7 +224,6 @@ function play_card(loc_in_list) {
 	//players[cur_player_index].hand.splice(loc_in_hand, 1);
 	// find index of card in hand
 	var loc_in_hand = players[cur_player_index].hand.indexOf(loc_in_list);
-	// console.log("loc in hand: " + loc_in_hand);
 	players[cur_player_index].hand.splice(loc_in_hand, 1);
 	add_to_used_stack(loc_in_list);
 
@@ -357,6 +354,8 @@ function update_cards_remaining() {
 	}
 }
 
+// change this to accept a parameter called to_stack, where if it's false it goes back to hand
+// use this function to add the first card off the deck to the pile at start of game
 function add_to_used_stack(card_index_to_add) {
 	//console.log("should add to used_stack");
 	// var cardindex = card_index_to_add;
@@ -414,5 +413,10 @@ function add_to_used_stack(card_index_to_add) {
 		userhand.appendChild(card);
 	}
 				
+}
+
+// use this to see if the player's card is acceptable, if not return it to screen 
+function player_card_valid(cardindex) {
+
 }
 
