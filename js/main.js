@@ -145,6 +145,7 @@ function play_game() {
 		update_cards_remaining();
 	}
 	console.log("waiting for player");
+	update_playable_cards(cur_player_index);
 	
 }
 
@@ -415,8 +416,47 @@ function add_to_used_stack(card_index_to_add) {
 				
 }
 
-// use this to see if the player's card is acceptable, if not return it to screen 
-function player_card_valid(cardindex) {
 
+// on each player's turn make sure that the only draggable cards are playable cards
+function update_playable_cards(human_index) {
+	for (var i = 0; i < players[human_index].hand.length; i++) {
+		let card_li = $("#" + players[human_index].hand[i])
+		// console.log(card_li);
+		if (player_card_valid(players[human_index].hand[i])) {
+			// add the draggable class
+			card_li.addClass("draggable");
+			card_li.addClass("ui-draggable");
+			card_li.addClass("ui-draggable-handle");
+			card_li.addClass("card_highlight");
+		} else {
+			// remove the draggable class
+			card_li.removeClass("draggable");
+			card_li.removeClass("ui-draggable");
+			card_li.removeClass("ui-draggable-handle");
+		}
+		console.log(player_card_valid(players[human_index].hand[i]));
+	}
 }
+
+// use this to see if the player's card is acceptable, if not return it to screen 
+function player_card_valid(player_card_index) {
+	var player_card = list_of_cards[player_card_index];
+	var last_card = list_of_cards[last_played_card];
+	if (player_card.special == "wild" || player_card.special == "wild-draw-4") {
+		return true;
+	} else if (player_card.color == last_card.color) {
+		return true;
+	} else if (player_card.number == last_card.number) {
+		return true;
+	} else if (player_card.special != "none" && player_card.special == last_card.special) {
+		return true;
+	}
+	return false;
+}
+
+
+
+
+
+
 
