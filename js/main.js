@@ -304,6 +304,7 @@ function display_cards() {
 					var cardimage = document.createElement("img");
 					cardimage.setAttribute('height', '140px');
 					cardimage.setAttribute('width', '105px');
+					card.zIndex = 1;
 
 					var specialtype = list_of_cards[cardindex].special;
 
@@ -334,6 +335,7 @@ function display_cards() {
 
 					card.className = "card num-" + cardnumber + " " + cardcolor + " draggable";
 					card.id = cardindex;
+					card.style.zIndex = 1;
 					var innerspan = document.createElement("span");
 					innerspan.className = "inner";
 					var markspan = document.createElement("span");
@@ -365,6 +367,7 @@ function add_to_used_stack(card_index_to_add) {
 	var userhand = document.getElementById("droppable");
 	userhand.innerHTML = '';
 	var card = document.createElement("li");
+	card.style.zIndex = -1;
 
 	if (cardnumber == "none") //special cards
 	{
