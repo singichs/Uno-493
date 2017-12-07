@@ -67,8 +67,10 @@ body {
 
 .deck-cards {
   position: absolute;
-  top: 300px;
+  top: 305px;
   left: 500px;
+  height: 170px;
+  width: 125px;
 }
 
 .played-cards {
