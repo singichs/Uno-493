@@ -12,7 +12,7 @@
   margin:10px;
   font-family: 'Source Sans Pro', sans-serif;
   font-size:100px;
-  text-shadow:
+  /*text-shadow:
      1px  1px 0 #000000,
     -1px -1px 0 #000000,
     -1px  1px 0 #000000,
@@ -22,10 +22,11 @@
      0   -1px 0 #000000,
      0    1px 0 #000000,
      4px  4px 0 #000000;
-  box-shadow:0 0 10px #aaaaaa;
+  box-shadow:0 0 10px #aaaaaa;*/
   text-align:center;
   position:relative;
 }
+
 .card .inner{
   display:table-cell;
   vertical-align:middle;
@@ -50,7 +51,7 @@
   line-height:0;
   font-size:20px;
   color:#ffffff;
-  text-shadow:
+  /*text-shadow:
      1px  1px 0 #000000,
     -1px -1px 0 #000000,
     -1px  1px 0 #000000,
@@ -59,7 +60,7 @@
     -1px  0   0 #000000,
      0   -1px 0 #000000,
      0    1px 0 #000000,
-     2px  2px 0 #000000;
+     2px  2px 0 #000000;*/
 }
 
 .card:before{
@@ -73,35 +74,35 @@
 }
 
 .card.blue{
-  color:#0063B3;
+  color:#5555ff;
 }
 
 .card.blue .inner{
-  background:#0063B3;
+  background:#5555ff;
 }
 
 .card.green{
-  color:#18A849;
+  color:#55aa55;
 }
 
 .card.green .inner{
-  background:#18A849;
+  background:#55aa55;
 }
 
 .card.red{
-  color:#C72A18;
+  color:#ff5555;
 }
 
 .card.red .inner{
-  background:#C72A18;
+  background:#ff5555;
 }
 
 .card.yellow{
-  color:#E6CA1E;
+  color:#ffaa00;
 }
 
 .card.yellow .inner{
-  background:#E6CA1E;
+  background:#ffaa00;
 }
 
 .card.num-0:before,
@@ -159,7 +160,7 @@
   content:"dog";
 }
 
-.card.num-6 .mark:after,
+/*.card.num-6 .mark:after,
 .card.num-9 .mark:after{
   display:block;
   content:"";
@@ -173,17 +174,17 @@
 }
 .card.num-6.blue .mark:after,
 .card.num-9.blue .mark:after{
-  background:#0063B3;
+  background:#5555ff;
 }
 .card.num-6.green .mark:after,
 .card.num-9.green .mark:after{
-  background:#18A849;
+  background:#55aa55;
 }
 .card.num-6.red .mark:after,
 .card.num-9.red .mark:after{
-  background:#C72A18;
+  background:#ff5555;
 }
 .card.num-6.yellow .mark:after,
 .card.num-9.yellow .mark:after{
-  background:#E6CA1E;
-}
+  background:#ffaa00;
+}*/

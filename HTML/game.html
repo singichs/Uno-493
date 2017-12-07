@@ -47,73 +47,26 @@
 				<label type="text" class="player1-control">Jim</label></br>
 				<label type="text" class="player1-name" id="p1cards">Cards Remaining: </label>
 				<ul id="player1-cards" class="player1-cards">
-					<li class="card num-0 blue">
+					<!--<li class="card num-0 blue">
 						<span class="inner">
 							<span class="mark">0</span>
 						</span>
-					</li>
-					<li class="card num-1 blue">
-						<span class="inner">
-							<span class="mark">1</span>
-						</span>
-					</li>
-					<li class="card num-2 blue">
-						<span class="inner">
-							<span class="mark">2</span>
-						</span>
-					</li>
-					<li class="card num-3 blue">
-						<span class="inner">
-							<span class="mark">3</span>
-						</span>
-					</li>
-					<li class="card num-dog red">
-						<span class="inner">
-							<span class="mark">ok</span>
-						</span>
-					</li>
-				</ul>
+					</li>-->
+					<img class= "CPUhand" src = "../img/facedown.png">
+				</ul> 
 			</div>
 			<div class="player2">
 				<label type="text" class="player2-control">Bob</label></br>
 				<label type="text" class="player2-name" id="p2cards">Cards Remaining: </label>
 				<ul id="player2-cards" class="player2-cards">
-					<li class="card num-4 yellow">
-						<span class="inner">
-							<span class="mark">4</span>
-						</span>
-					</li>
-					<li class="card num-5 yellow">
-						<span class="inner">
-							<span class="mark">5</span>
-						</span>
-					</li>
-					<li class="card num-6 yellow">
-						<span class="inner">
-							<span class="mark">6</span>
-						</span>
-					</li>
-					<li class="card num-7 yellow">
-						<span class="inner">
-							<span class="mark">7</span>
-						</span>
-					</li>
+					<img class= "CPUhand" src = "../img/facedown.png">
 				</ul>
 			</div>
 			<div class="player3">
 				<label type="text" class="player3-control">Cooter</label></br>
 				<label type="text" class="player3-name" id="p3cards">Cards Remaining: </label>
-				<ul id="player3-cards" class="player3-cards" ondrop="drop(event)" ondragover="allowDrop(event)">
-					<li class="card num-8 red">
-						<span class="inner">
-							<span class="mark">8</span>
-						</span>
-					</li>
-					<li class="card num-9 red">
-						<span class="inner">
-							<span class="mark">9</span>
-						</span>
-					</li>
+				<ul id="player3-cards" class="player3-cards">
+					<img class= "CPUhand" src = "../img/facedown.png">
 					<!-- <li class="card num-0 red">
 						<span class="inner">
 							<span class="mark">0</span>
@@ -127,11 +80,11 @@
 				</ul>
 			</div>
 			<div class="player4">
-				<label type="text" class="player4-control" id="currentUsr">Player 4</label></br>
-				<label type="text" class="player4-name" id="p4cards">Cards Remaining: </label>
+				<label type="text" class="player4-control" id="currentUsr"></label></br>
+				<label type="text" class="player4-name" id="p4cards"></label>
 				<ul id="player4-cards" class="player4-cards">
 					<!-- <li class="card num-2 green" draggable="true" ondragstart="drag(event)"> -->
-					<li class="card num-2 green" id="draggable" style="z-index: 100">
+					<!-- <li class="card num-2 green" id="draggable" style="z-index: 100">
 						<span class="inner">
 							<span class="mark" id="testing">2</span>
 						</span>
@@ -145,7 +98,7 @@
 						<span class="inner">
 							<span class="mark">4</span>
 						</span>
-					</li>
+					</li> -->
 					<!-- <li class="card num-5 green">
 						<span class="inner">
 							<span class="mark">5</span>
@@ -195,7 +148,7 @@
 	document.getElementById("p4cards").innerHTML += usrCards;
 
 	$(function() {
-		$("#draggable").draggable();
+		$(".draggable").draggable();
 		$("#droppable").droppable({
 			drop: function (event, ui) {
 				$(this)

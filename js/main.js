@@ -8,6 +8,12 @@ $( document ).ready(function(){
 	play_game();
 	console.log(players);
 
+	// gonna have to change this to the ondrag event
+	$("#player2-cards").click(function() {
+		console.log("clicked");
+		get_next_player();
+		play_game();
+	})
 
 });
 
@@ -19,7 +25,7 @@ var cur_player_index = 0;
 var last_played_card = 0;	// this indexes into list_of_cards
 var game_over = false;
 var cur_color = "none";		// this is used if a wild is played
-
+var clockwise_dir = true;
 
 class Card {
 	constructor(color, number, special) {
@@ -74,7 +80,7 @@ function initialize_list() {
 	}
 	for (var i = 0; i < colors.length; i++) {
 		for (var j = 0; j < 2; j++) {
-			list_of_cards.push(new Card(colors[i], "none", "draw-2"));
+			list_of_cards.push(new Card(colors[i], "none", "draw2"));
 		}
 		for (var j = 0; j < 2; j++) {
 			list_of_cards.push(new Card(colors[i], "none", "skip"));
@@ -94,6 +100,10 @@ function initialize_list() {
 function reset_deck() {
 	deck = Array.from(Array(108).keys());
 	deck = shuffle(deck);
+	// reset the wild cards to have no color associated with them
+	for (var i = 99; i < 108; i++) {
+		list_of_cards[i].color = "none";
+	}
 }
 
 // function below ripped directly from stack overflow page
@@ -113,15 +123,24 @@ function deal_cards(num_cards_in_hand) {
 		}
 	}
 	console.log(players);
+	last_played_card = deck.pop();
+	console.log("last played card: " + list_of_cards[last_played_card].color + " " + list_of_cards[last_played_card].number + " " + list_of_cards[last_played_card].special)
+	
+	display_cards();
 }
+
+
 
 
 function play_game() {
 	// turn over top card
 	// TO DO: make sure the top card isn't a special card
-	last_played_card = deck.pop();
-	console.log("last played card: " + list_of_cards[last_played_card].color + " " + list_of_cards[last_played_card].number + " " + list_of_cards[last_played_card].special)
-	while (!game_over) {
+	// while (!game_over) {
+	// 	player_turn();
+	// }
+	console.log("player index: " + cur_player_index);
+	while (!players[cur_player_index].human) {
+		console.log("waiting for player");
 		player_turn();
 	}
 }
@@ -132,11 +151,14 @@ function player_turn() {
 		used_deck = [];
 		reset_deck();
 	}
-
 	if (players[cur_player_index].human) {
 		// highlight playable cards for the player
+		get_player_card()
+		// .then(function(response) {
 
-		cur_player_index = (cur_player_index + 1) % players.length;
+		// })
+
+		get_next_player();
 	} else {
 		// look in hand first for: color, number, other, then draw
 		// have some other logic for wilds (replace the list_of_cards lookup with just cur_color variable);
@@ -157,17 +179,12 @@ function player_turn() {
 			}
 			i++;
 		}
-		// console.log("after looking thru hand, we have: ");
-		// console.log("to play: " + to_play);
-		// console.log(players[cur_player_index].hand[to_play]);
 		// if we didn't find a card of the same color check to see if we have another
 		// playable card
 		if (to_play == -1) {
 			if (same_number_found != -1) {
-				// console.log("same number found: " + same_number_found);
 				to_play = same_number_found;
 			} else if (special_found != -1) {
-				// console.log("special found: " + special_found);
 				to_play = special_found;
 			}
 		}
@@ -175,12 +192,9 @@ function player_turn() {
 		if (to_play == -1) {
 			draw_card(cur_player_index, 1);
 		} else {
-			play_card(cur_player_index, to_play);
+			play_card(to_play);
 		}
-		// game_over = true;
-	}
-	// cur_player_index = (cur_player_index + 1) % players.length;
-	
+	}	
 }
 
 
@@ -193,7 +207,7 @@ function draw_card(player_index, num_to_draw) {
 	// cur_player_index = (cur_player_index + 1) % players.length;
 }
 
-function play_card(cur_player_indexx, loc_in_hand) {
+function play_card(loc_in_hand) {
 	// console.log("currently in hand: ");
 	// for (var i = 0; i < players[cur_player_index].hand.length; i++) {
 	// 	//console.log(list_of_cards[players[cur_player_index].hand[i]].color + " " + list_of_cards[players[cur_player_index].hand[i]].number + " " + list_of_cards[players[cur_player_index].hand[i]].special);
@@ -204,7 +218,7 @@ function play_card(cur_player_indexx, loc_in_hand) {
 	used_deck.push(last_played_card);
 	last_played_card = players[cur_player_index].hand[loc_in_hand];
 	if (list_of_cards[last_played_card].color == "none" && list_of_cards[last_played_card].special != "none") {
-		list_of_cards[last_played_card].color = get_color(cur_player_index);
+		list_of_cards[last_played_card].color = get_color();
 	}
 	
 	players[cur_player_index].hand.splice(loc_in_hand, 1);
@@ -213,24 +227,31 @@ function play_card(cur_player_indexx, loc_in_hand) {
 	if (players[cur_player_index].hand.length == 1) {
 		console.log("UNO!");
 	} else if (players[cur_player_index].hand.length == 0) {
-		console.log("game over");
+		console.log("game over, " + players[cur_player_index].name + " is the winner!");
 		game_over = true;
 	}
 
 	if (list_of_cards[last_played_card].special == "draw-2") {
 		console.log("next player draws 2");
 		draw_card((cur_player_index + 1) % players.length, 2);
-		cur_player_index = (cur_player_index + 1) % players.length;
+		get_next_player();
 	} else if (list_of_cards[last_played_card].special == "wild-draw-4") {
 		console.log("next player draws 4");
 		draw_card((cur_player_index + 1) % players.length, 4);
-		cur_player_index = (cur_player_index + 1) % players.length;
-
+		get_next_player();
+	} else if (list_of_cards[last_played_card].special == "reverse") {
+		if (clockwise_dir) {
+			clockwise_dir = false;
+		} else {
+			clockwise_dir = true;
+		}
+	} else if (list_of_cards[last_played_card].special == "skip") {
+		get_next_player();
 	}
-	cur_player_index = (cur_player_index + 1) % players.length;
+	get_next_player();
 }
 
-function get_color(cur_player_index) {
+function get_color() {
 	if (players[cur_player_index].human) {
 		// have a pop up ask them for color
 	} else {
@@ -238,4 +259,93 @@ function get_color(cur_player_index) {
 		return "red";
 	}
 }
+
+// used to determine which player gets the next move
+function get_next_player() {
+	if (clockwise_dir) {
+		cur_player_index = (cur_player_index + 1) % players.length;
+	} else {
+		cur_player_index = (cur_player_index - 1) % players.length;
+		if (cur_player_index == -1) {
+			cur_player_index = players.length - 1;
+		}
+	}
+}
+
+function get_player_card() {
+	if (players[cur_player_index].human) {
+		console.log("human time boi");
+	}
+}
+
+
+function display_cards() {
+
+	for (var i = 0; i < players.length; ++i)
+	{
+		if (players[i].human == true)
+		{
+			for (var j = 0; j < 7; ++j)
+			{
+				var cardindex = players[i].hand[j];
+
+				var cardcolor = list_of_cards[cardindex].color;
+				var cardnumber = list_of_cards[cardindex].number;
+
+				var userhand = document.getElementById("player4-cards");
+				var card = document.createElement("li");
+
+				if (cardnumber == "none") //special cards
+				{
+					card.className = "card " + "draggable";
+					var cardimage = document.createElement("img");
+					cardimage.setAttribute('height', '140px');
+					cardimage.setAttribute('width', '105px');
+
+					var specialtype = list_of_cards[cardindex].special;
+
+					if (specialtype == "wild-draw-4")
+					{
+						cardimage.setAttribute('src', '../img/wild-draw-4.png');
+					}
+					else if (specialtype == "wild")
+					{
+
+						cardimage.setAttribute('src', '../img/wild.png');
+			
+					}
+					else
+					{
+						console.log(cardcolor + " " + specialtype);
+
+						cardimage.setAttribute('src', '../img/' + cardcolor + specialtype + '.png');
+					}
+					card.appendChild(cardimage);
+					userhand.appendChild(card);
+
+				}
+				else
+				{
+
+					console.log(cardcolor + " " + cardnumber);
+
+					card.className = "card num-" + cardnumber + " " + cardcolor + " draggable";
+					var innerspan = document.createElement("span");
+					innerspan.className = "inner";
+					var markspan = document.createElement("span");
+					markspan.className = "mark";
+					markspan.innerHTML = cardnumber;
+					innerspan.appendChild(markspan);
+					card.appendChild(innerspan);
+					userhand.appendChild(card);
+				}
+
+			}
+		}
+	}
+
+
+}
+
+
 
