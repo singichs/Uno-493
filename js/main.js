@@ -3,8 +3,10 @@ $( document ).ready(function(){
 	localStorage.setItem("player_won", "yes");
 	initialize_players(3);
 	initialize_list();
+
 	reset_deck();
 	deal_cards(7);
+
 	play_game();
 	console.log(players);
 
@@ -95,7 +97,7 @@ function reset_deck() {
 	deck = Array.from(Array(108).keys());
 	deck = shuffle(deck);
 	// reset the wild cards to have no color associated with them
-	for (var i = 99; i < 108; i++) {
+	for (var i = 100; i < 108; i++) {
 		list_of_cards[i].color = "none";
 	}
 }
