@@ -143,26 +143,98 @@
     }
     document.getElementById('currentUsr').innerHTML = data.name;
 
- //    var jimCards = document.getElementById("player1-cards").getElementsByTagName('li').length;
- //    var bobCards = document.getElementById("player2-cards").getElementsByTagName('li').length;
- //    var cooterCards = document.getElementById("player3-cards").getElementsByTagName('li').length;
- //    var usrCards = document.getElementById("player4-cards").getElementsByTagName('li').length;
+	 //    var jimCards = document.getElementById("player1-cards").getElementsByTagName('li').length;
+	 //    var bobCards = document.getElementById("player2-cards").getElementsByTagName('li').length;
+	 //    var cooterCards = document.getElementById("player3-cards").getElementsByTagName('li').length;
+	 //    var usrCards = document.getElementById("player4-cards").getElementsByTagName('li').length;
     
  
 
 	// document.getElementById("p1cards").innerHTML += jimCards;
 	// document.getElementById("p2cards").innerHTML += bobCards;
 	// document.getElementById("p3cards").innerHTML += cooterCards;
-	//document.getElementById("p4cards").innerHTML += usrCards;
+	// document.getElementById("p4cards").innerHTML += usrCards;
 	
 
 	$(function() {
 		$(".draggable").draggable();
 		$("#droppable").droppable({
 			drop: function (event, ui) {
+				// console.log("dropping the card");
+				// console.log("event target: ")
+				// console.log(event.target);
+				// console.log("ui helper: ")
+				// console.log(ui.helper[0]);
+				// console.log(ui.helper[0].id);
+				// $(this).remove();
+				var cardindex = ui.helper[0].id;
+				if (!game_over) {
+					//get_next_player();
+					player_turn(cardindex);
+					play_game();
+				}
+				$(ui.helper[0]).remove();
+				// pass in event.target into the play function that click currently has
 				$(this)
 					.find("li")
 						.html();
+				// var cardindex = ui.helper[0].id;
+
+				// definitely should break this up into a function(s)
+
+				var cardcolor = list_of_cards[cardindex].color;
+				var cardnumber = list_of_cards[cardindex].number;
+
+				var userhand = document.getElementById("droppable");
+				userhand.innerHTML = '';
+				var card = document.createElement("li");
+
+				if (cardnumber == "none") //special cards
+				{
+					card.className = "card " + "draggable";
+					card.id = cardindex;
+					var cardimage = document.createElement("img");
+					cardimage.setAttribute('height', '140px');
+					cardimage.setAttribute('width', '105px');
+
+					var specialtype = list_of_cards[cardindex].special;
+
+					if (specialtype == "wild-draw-4")
+					{
+						cardimage.setAttribute('src', '../img/wild-draw-4.png');
+					}
+					else if (specialtype == "wild")
+					{
+
+						cardimage.setAttribute('src', '../img/wild.png');
+			
+					}
+					else
+					{
+						console.log(cardcolor + " " + specialtype);
+
+						cardimage.setAttribute('src', '../img/' + cardcolor + specialtype + '.png');
+					}
+					card.appendChild(cardimage);
+					userhand.appendChild(card);
+
+				}
+				else
+				{
+
+					// console.log(cardcolor + " " + cardnumber);
+
+					card.className = "card num-" + cardnumber + " " + cardcolor + " draggable";
+					card.id = cardindex;
+					var innerspan = document.createElement("span");
+					innerspan.className = "inner";
+					var markspan = document.createElement("span");
+					markspan.className = "mark";
+					markspan.innerHTML = cardnumber;
+					innerspan.appendChild(markspan);
+					card.appendChild(innerspan);
+					userhand.appendChild(card);
+				}
 			}
 		});
 	});
