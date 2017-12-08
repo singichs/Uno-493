@@ -135,16 +135,25 @@ function deal_cards(num_cards_in_hand) {
 function play_game() {
 	// turn over top card
 	console.log("playing the game");
-	while (!players[cur_player_index].human && !game_over) {
-		// parameter should only matter for human player
-		// console.log("who's turn: " + players[cur_player_index].name);
-		player_turn(-1);
-		update_cards_remaining();
-	}
+	// while (!players[cur_player_index].human && !game_over) {
+	// 	// parameter should only matter for human player
+	// 	// console.log("who's turn: " + players[cur_player_index].name);
+	// 	player_turn(-1);
+	// 	update_cards_remaining();
+	// }
+	player_turn(-1);
+	setInterval(cpu_play, 2000);
 	console.log("waiting for player");
 	display_cards();
 	update_playable_cards(cur_player_index);
 	$(".draggable").draggable();
+}
+
+function cpu_play(){
+	if(!players[cur_player_index].human && !game_over){
+		player_turn(-1);
+		update_cards_remaining();
+	}
 }
 
 function player_turn(cardindex) {
