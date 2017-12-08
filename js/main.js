@@ -135,14 +135,14 @@ function deal_cards(num_cards_in_hand) {
 function play_game() {
 	// turn over top card
 	console.log("playing the game");
-	// while (!players[cur_player_index].human && !game_over) {
-	// 	// parameter should only matter for human player
-	// 	// console.log("who's turn: " + players[cur_player_index].name);
-	// 	player_turn(-1);
-	// 	update_cards_remaining();
-	// }
-	player_turn(-1);
-	setInterval(cpu_play, 2000);
+	while (!players[cur_player_index].human && !game_over) {
+		// parameter should only matter for human player
+		// console.log("who's turn: " + players[cur_player_index].name);
+		player_turn(-1);
+		update_cards_remaining();
+	}
+	// player_turn(-1);
+	// setInterval(cpu_play, 2000);
 	console.log("waiting for player");
 	if(players[cur_player_index].human){
 		display_cards();	
@@ -153,6 +153,8 @@ function play_game() {
 
 function cpu_play(){
 	if(!players[cur_player_index].human && !game_over){
+
+		console.log(cur_player_index + " played a card");
 		player_turn(-1);
 		update_cards_remaining();
 	}
@@ -183,7 +185,7 @@ function player_turn(cardindex) {
 			} else if (list_of_cards[players[cur_player_index].hand[i]].number == list_of_cards[last_played_card].number && list_of_cards[last_played_card].number != "none") {
 				same_number_found = i;
 			} else if (list_of_cards[players[cur_player_index].hand[i]].special != "none") {
-				if (list_of_cards[last_played_card].special == "none" || list_of_cards[last_played_card].special == list_of_cards[players[cur_player_index].hand[i]].special)
+				if (list_of_cards[last_played_card].special == "none" && list_of_cards[last_played_card].special == list_of_cards[players[cur_player_index].hand[i]].special)
 				special_found = i;
 			}
 			i++;
@@ -223,6 +225,7 @@ function draw_card(player_index, num_to_draw) {
 	p4hand.innerHTML = "";
 	display_cards();
 	// console.log("cards in hand for " + players[cur_player_index].name + " " + players[cur_player_index].hand.length);
+	console.log(players[player_index].name + " drew " + num_to_draw + " cards");
 	get_next_player();
 }
 
@@ -242,8 +245,8 @@ function play_card(loc_in_list) {
 	// find index of card in hand
 
 	var loc_in_hand = players[cur_player_index].hand.indexOf(Number(loc_in_list));
-	console.log("location in hand removed: " + loc_in_hand);
-	console.log("location searched for: " + loc_in_list);
+	// console.log("location in hand removed: " + loc_in_hand);
+	// console.log("location searched for: " + loc_in_list);
 	players[cur_player_index].hand.splice(loc_in_hand, 1);
 	add_to_used_stack(loc_in_list);
 
@@ -257,13 +260,31 @@ function play_card(loc_in_list) {
 	}
 	// console.log("checking specials: " + list_of_cards[last_played_card].special);
 	if (list_of_cards[last_played_card].special == "draw2") {
-		console.log(players[(cur_player_index + 1) % players.length].name + " draws 2");
-		draw_card((cur_player_index + 1) % players.length, 2);
+		// console.log(players[(cur_player_index + 1) % players.length].name + " draws 2");
+		if (clockwise_dir) {
+			draw_card((cur_player_index + 1) % players.length, 2);
+		} else {
+			if (cur_player_index == 0) {
+				draw_card(3, 2);
+			} else {
+				draw_card(cur_player_index - 1, 2);
+			}
+		}
+		
 		// get_next_player();
 	} else if (list_of_cards[last_played_card].special == "wild-draw-4") {
 		// console.log("next player draws 4");
-		console.log(players[(cur_player_index + 1) % players.length].name + " draws 4");
-		draw_card((cur_player_index + 1) % players.length, 4);
+		// console.log(players[(cur_player_index + 1) % players.length].name + " draws 4");
+		// draw_card((cur_player_index + 1) % players.length, 4);
+		if (clockwise_dir) {
+			draw_card((cur_player_index + 1) % players.length, 4);
+		} else {
+			if (cur_player_index == 0) {
+				draw_card(3, 4);
+			} else {
+				draw_card(cur_player_index - 1, 4);
+			}
+		}
 		// get_next_player();
 	} else if (list_of_cards[last_played_card].special == "reverse") {
 		if (clockwise_dir) {
@@ -354,7 +375,7 @@ function display_cards() {
 
 					// console.log(cardcolor + " " + cardnumber);
 
-					card.className = "card num-" + cardnumber + " " + cardcolor + " draggable";
+					card.className = "card num-" + cardnumber + " " + cardcolor + " draggable ui-draggable ui-draggable-handle";
 					card.id = cardindex;
 					card.style.zIndex = 1;
 					var innerspan = document.createElement("span");
