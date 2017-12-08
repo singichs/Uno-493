@@ -142,6 +142,7 @@ function play_game() {
 		update_cards_remaining();
 	}
 	console.log("waiting for player");
+	display_cards();
 	update_playable_cards(cur_player_index);
 	$(".draggable").draggable();
 }
@@ -200,13 +201,13 @@ function player_turn(cardindex) {
 
 function draw_card(player_index, num_to_draw) {
 	// TODO add in actual loop  that draws multiple cards
-	console.log(num_to_draw);
-	console.log(players[3].hand);
+	// console.log(num_to_draw);
+	// console.log(players[3].hand);
 	for (var i = 0; i < num_to_draw; i++) {
 		players[player_index].hand.push(deck.pop());
 	}
-	console.log(players);
-	console.log(players[3].hand)
+	// console.log(players);
+	// console.log(players[3].hand)
 	let p4hand = document.getElementById('player4-cards');
 	p4hand.innerHTML = "";
 	display_cards();
@@ -228,7 +229,10 @@ function play_card(loc_in_list) {
 	
 	//players[cur_player_index].hand.splice(loc_in_hand, 1);
 	// find index of card in hand
-	var loc_in_hand = players[cur_player_index].hand.indexOf(loc_in_list);
+
+	var loc_in_hand = players[cur_player_index].hand.indexOf(Number(loc_in_list));
+	console.log("location in hand removed: " + loc_in_hand);
+	console.log("location searched for: " + loc_in_list);
 	players[cur_player_index].hand.splice(loc_in_hand, 1);
 	add_to_used_stack(loc_in_list);
 
@@ -265,6 +269,7 @@ function play_card(loc_in_list) {
 function get_color() {
 	if (players[cur_player_index].human) {
 		// have a pop up ask them for color
+		return "red";
 	} else {
 		// just choose red for rn - run through and choose the color with most 
 		return "red";
@@ -286,6 +291,8 @@ function get_next_player() {
 
 function display_cards() {
 
+	let p4hand = document.getElementById('player4-cards');
+	p4hand.innerHTML = "";
 	for (var i = 0; i < players.length; ++i)
 	{
 		if (players[i].human == true)
@@ -323,7 +330,7 @@ function display_cards() {
 					}
 					else
 					{
-						console.log(cardcolor + " " + specialtype);
+						// console.log(cardcolor + " " + specialtype);
 
 						cardimage.setAttribute('src', '../img/' + cardcolor + specialtype + '.png');
 					}
