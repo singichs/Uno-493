@@ -238,11 +238,12 @@ function play_card(loc_in_list) {
 	}
 	// console.log("checking specials: " + list_of_cards[last_played_card].special);
 	if (list_of_cards[last_played_card].special == "draw2") {
-		console.log("next player draws 2");
+		console.log(players[(cur_player_index + 1) % players.length].name + " draws 2");
 		draw_card((cur_player_index + 1) % players.length, 2);
 		// get_next_player();
 	} else if (list_of_cards[last_played_card].special == "wild-draw-4") {
-		console.log("next player draws 4");
+		// console.log("next player draws 4");
+		console.log(players[(cur_player_index + 1) % players.length].name + " draws 4");
 		draw_card((cur_player_index + 1) % players.length, 4);
 		// get_next_player();
 	} else if (list_of_cards[last_played_card].special == "reverse") {
@@ -445,7 +446,7 @@ function player_card_valid(player_card_index) {
 		return true;
 	} else if (player_card.color == last_card.color) {
 		return true;
-	} else if (player_card.number == last_card.number) {
+	} else if (player_card.number == last_card.number && player_card.number != "none") {
 		return true;
 	} else if (player_card.special != "none" && player_card.special == last_card.special) {
 		return true;
