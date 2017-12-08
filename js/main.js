@@ -134,10 +134,7 @@ function deal_cards(num_cards_in_hand) {
 // passed in card index is for player turn
 function play_game() {
 	// turn over top card
-	// TO DO: make sure the top card isn't a special card
-	// while (!game_over) {
-	// 	player_turn();
-	// }
+	console.log("playing the game");
 	while (!players[cur_player_index].human && !game_over) {
 		// parameter should only matter for human player
 		// console.log("who's turn: " + players[cur_player_index].name);
@@ -214,7 +211,7 @@ function draw_card(player_index, num_to_draw) {
 	p4hand.innerHTML = "";
 	display_cards();
 	// console.log("cards in hand for " + players[cur_player_index].name + " " + players[cur_player_index].hand.length);
-	get_next_player()
+	get_next_player();
 }
 
 function play_card(loc_in_list) {
@@ -305,7 +302,7 @@ function display_cards() {
 
 				if (cardnumber == "none") //special cards
 				{
-					card.className = "card " + "draggable";
+					card.className = "card draggable ui-draggable ui-draggable-handle";
 					card.id = cardindex;
 					var cardimage = document.createElement("img");
 					cardimage.setAttribute('height', '140px');
