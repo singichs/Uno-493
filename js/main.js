@@ -203,9 +203,16 @@ function player_turn(cardindex) {
 
 function draw_card(player_index, num_to_draw) {
 	// TODO add in actual loop  that draws multiple cards
+	console.log(num_to_draw);
+	console.log(players[3].hand);
 	for (var i = 0; i < num_to_draw; i++) {
 		players[player_index].hand.push(deck.pop());
 	}
+	console.log(players);
+	console.log(players[3].hand)
+	let p4hand = document.getElementById('player4-cards');
+	p4hand.innerHTML = "";
+	display_cards();
 	// console.log("cards in hand for " + players[cur_player_index].name + " " + players[cur_player_index].hand.length);
 	get_next_player()
 }
@@ -285,7 +292,7 @@ function display_cards() {
 	{
 		if (players[i].human == true)
 		{
-			for (var j = 0; j < 7; ++j)
+			for (var j = 0; j < players[i].hand.length; ++j)
 			{
 				var cardindex = players[i].hand[j];
 
