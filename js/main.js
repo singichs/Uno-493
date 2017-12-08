@@ -144,8 +144,10 @@ function play_game() {
 	player_turn(-1);
 	setInterval(cpu_play, 2000);
 	console.log("waiting for player");
-	display_cards();
-	update_playable_cards(cur_player_index);
+	if(players[cur_player_index].human){
+		display_cards();	
+		update_playable_cards(cur_player_index);
+	}
 	$(".draggable").draggable();
 }
 
