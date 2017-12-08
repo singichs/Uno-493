@@ -143,7 +143,7 @@ function play_game() {
 	}
 	console.log("waiting for player");
 	update_playable_cards(cur_player_index);
-	
+	$(".draggable").draggable();
 }
 
 function player_turn(cardindex) {
