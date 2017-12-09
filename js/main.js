@@ -171,6 +171,7 @@ function play_game() {
 
 function cpu_play(){
 	if(!players[cur_player_index].human && !game_over){
+
 		console.log("timeout expired");
 		console.log(cur_player_index + " played a card");
 		player_turn(-1);
@@ -190,7 +191,7 @@ function player_turn(cardindex) {
 	}
 	if (players[cur_player_index].human) {
 		// highlight playable cards for the player
-		
+		//$("turn_announcement").text("Your Turn");
 		play_card(cardindex);
 	} else {
 		// look in hand first for: color, number, other, then draw
@@ -238,21 +239,20 @@ function draw_animation(index)
 	console.log("animating!");
 	if (index == 0)
 	{
-		$("#sliding").effect("drop", {direction:"left"}, 2000);
+		$("#sliding").effect("drop", {direction:"left"}, 1000);
 	}
 	else if (index == 1)
 	{
-		$("#sliding").effect("drop", {direction:"up"}, 2000);
+		$("#sliding").effect("drop", {direction:"up"}, 1000);
 	}
 	else if (index == 2)
 	{
-		$("#sliding").effect("drop", {direction:"right"}, 2000);
+		$("#sliding").effect("drop", {direction:"right"}, 1000);
 	}
 	else 
 	{
-		$("#sliding").effect("drop", {direction:"down"}, 2000);
+		$("#sliding").effect("drop", {direction:"down"}, 1000);
 	}
-
 
 }
 
@@ -508,7 +508,6 @@ function add_to_used_stack(card_index_to_add) {
 
 // on each player's turn make sure that the only draggable cards are playable cards
 function update_playable_cards(human_index) {
-	console.log("updating playable cards");
 	for (var i = 0; i < players[human_index].hand.length; i++) {
 		let card_li = $("#" + players[human_index].hand[i])
 		card_li.draggable();
@@ -518,6 +517,7 @@ function update_playable_cards(human_index) {
 			console.log("card" + i + " playable")
 			// add the draggable class
 			card_li.addClass("draggable");
+			card_li.draggable( "enable" );
 			// card_li.addClass("ui-draggable");
 			// card_li.addClass("ui-draggable-handle");
 			card_li.addClass("card_highlight");
@@ -550,7 +550,20 @@ function player_card_valid(player_card_index) {
 }
 
 
+window.setInterval(function(){
 
+name = players[cur_player_index].name;
+
+if (name == "human boi")
+{
+	document.getElementById("turn_announcement").innerHTML = "Your Turn";
+}
+else
+{
+	document.getElementById("turn_announcement").innerHTML = name + "'s Turn";
+}
+
+}, 50);
 
 
 

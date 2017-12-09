@@ -24,6 +24,22 @@ body {
 	height: 100%;
 }
 
+.turn_announcer {
+	position: absolute;
+	width: 200px;
+	height: 50px;
+	font-size: 30px;
+	color: white;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	top: 100px;
+	left: 150px;
+}
+
+label {
+	color: white;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
 .player1 {
 	float: left;
 	position: absolute;

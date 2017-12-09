@@ -120,7 +120,9 @@
 						</div>
 						<div class="center">
 							<!-- <ul class="played-cards" ondrop="drop(event)" ondragover="allowDrop(event)"> -->
-
+							<div class="turn_announcer">
+								<p id = "turn_announcement"></p>
+							</div>
 							<ul class="played-cards" id="droppable">
 								<li class="card num-9 blue" id="centerCard" style="z-index: 1">
 									<!-- <span class="inner">
@@ -159,7 +161,6 @@
          data[tmp[0]] = tmp[1];
     }
     document.getElementById('currentUsr').innerHTML = data.name;
-
     if (data.bgImg == 1) {
     	document.body.background = "../img/background1.png";
     }
@@ -178,20 +179,17 @@
     else if (data.bgImg == 6) {
     	document.body.background = "../img/background6.png";
     }
-
 	 //    var jimCards = document.getElementById("player1-cards").getElementsByTagName('li').length;
 	 //    var bobCards = document.getElementById("player2-cards").getElementsByTagName('li').length;
 	 //    var cooterCards = document.getElementById("player3-cards").getElementsByTagName('li').length;
 	 //    var usrCards = document.getElementById("player4-cards").getElementsByTagName('li').length;
     
  
-
 	// document.getElementById("p1cards").innerHTML += jimCards;
 	// document.getElementById("p2cards").innerHTML += bobCards;
 	// document.getElementById("p3cards").innerHTML += cooterCards;
 	// document.getElementById("p4cards").innerHTML += usrCards;
 	
-
 	$(function() {
 		$(".draggable").draggable();
 		$("#droppable").droppable({
@@ -215,16 +213,12 @@
 				// 	.find("li")
 				// 		.html();
 				// // var cardindex = ui.helper[0].id;
-
 				// // definitely should break this up into a function(s)
-
 				// var cardcolor = list_of_cards[cardindex].color;
 				// var cardnumber = list_of_cards[cardindex].number;
-
 				// var userhand = document.getElementById("droppable");
 				// userhand.innerHTML = '';
 				// var card = document.createElement("li");
-
 				// if (cardnumber == "none") //special cards
 				// {
 				// 	card.className = "card " + "draggable";
@@ -232,34 +226,27 @@
 				// 	var cardimage = document.createElement("img");
 				// 	cardimage.setAttribute('height', '140px');
 				// 	cardimage.setAttribute('width', '105px');
-
 				// 	var specialtype = list_of_cards[cardindex].special;
-
 				// 	if (specialtype == "wild-draw-4")
 				// 	{
 				// 		cardimage.setAttribute('src', '../img/wild-draw-4.png');
 				// 	}
 				// 	else if (specialtype == "wild")
 				// 	{
-
 				// 		cardimage.setAttribute('src', '../img/wild.png');
 			
 				// 	}
 				// 	else
 				// 	{
 				// 		console.log(cardcolor + " " + specialtype);
-
 				// 		cardimage.setAttribute('src', '../img/' + cardcolor + specialtype + '.png');
 				// 	}
 				// 	card.appendChild(cardimage);
 				// 	userhand.appendChild(card);
-
 				// }
 				// else
 				// {
-
 				// 	// console.log(cardcolor + " " + cardnumber);
-
 				// 	card.className = "card num-" + cardnumber + " " + cardcolor + " draggable";
 				// 	card.id = cardindex;
 				// 	var innerspan = document.createElement("span");
@@ -276,4 +263,3 @@
 	});
 }
 </script>
-
