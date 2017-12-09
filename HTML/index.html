@@ -84,11 +84,19 @@
 			      </div>
 
 			      <div class="modal-body">
-			        Customize your game on UNO! <br>
+			        <h2>Customize your game on UNO!</h2>
+			        <br>
+			        <h3>Edit Player Names:</h3>
 							Player 1 Name: <input type="text" id="player1_name" name="player1_name" value="Jim"><br>
 							Player 2 Name: <input type="text" id="player2_name" name="player2_name" value="Bob"><br>
 							Player 3 Name: <input type="text" id="player3_name" name="player3_name" value="Cooter"><br>
-
+							<br>
+							<h3>Choose a Game Background:</h3>
+							<input type="radio" name="background" value="background1" id="background1" checked> <img class="backgroundImage" src="../img/background1.png"><br>
+							<input type="radio" name="background" value="background2" id="background2"> <img class="backgroundImage" src="../img/background2.png"><br>
+							<input type="radio" name="background" value="background3" id="background3"> <img class="backgroundImage" src="../img/background3.png"><br> 
+							<input type="radio" name="background" value="background4" id="background4"> <img class="backgroundImage" src="../img/background4.png"><br> 
+							<input type="radio" name="background" value="background5" id="background5"> <img class="backgroundImage" src="../img/background5.png"><br>  
 
 			      </div>
 
@@ -112,7 +120,29 @@
 		var p1 = document.getElementById("player1_name").value;
 		var p2 = document.getElementById("player2_name").value;
 		var p3 = document.getElementById("player3_name").value;
-		location.href = "game.html?name=" + name + "&p1=" + p1 + "&p2=" + p2 + "&p3=" + p3;
+		var bgImg = 1;
+		if(document.getElementById("background1").checked) {
+			alert(1);
+			bgImg = 1;
+		}
+		else if (document.getElementById("background2").checked) {
+			alert(2);
+			bgImg = 2;
+		}
+		else if (document.getElementById("background3").checked) {
+			alert(3);
+			bgImg = 3;
+		}
+		else if (document.getElementById("background4").checked) {
+			alert(4);
+			bgImg = 4;
+		}
+		else if (document.getElementById("background5").checked) {
+			alert(5);
+			bgImg = 5;
+		}
+
+		location.href = "game.html?name=" + name + "&p1=" + p1 + "&p2=" + p2 + "&p3=" + p3 + "&bgImg=" + bgImg;
 	}
 </script>
 
