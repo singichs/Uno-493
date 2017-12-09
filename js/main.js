@@ -233,6 +233,28 @@ function player_turn(cardindex) {
 	}	
 }
 
+function draw_animation(index)
+{
+	console.log("animating!");
+	if (index == 0)
+	{
+		$("#sliding").effect("drop", {direction:"left"}, 2000);
+	}
+	else if (index == 1)
+	{
+		$("#sliding").effect("drop", {direction:"up"}, 2000);
+	}
+	else if (index == 2)
+	{
+		$("#sliding").effect("drop", {direction:"right"}, 2000);
+	}
+	else 
+	{
+		$("#sliding").effect("drop", {direction:"down"}, 2000);
+	}
+
+
+}
 
 function draw_card(player_index, num_to_draw) {
 	// TODO add in actual loop  that draws multiple cards
@@ -245,6 +267,7 @@ function draw_card(player_index, num_to_draw) {
 	// console.log(players[3].hand)
 	let p4hand = document.getElementById('player4-cards');
 	p4hand.innerHTML = "";
+	draw_animation(player_index);
 	display_cards();
 	// console.log("cards in hand for " + players[cur_player_index].name + " " + players[cur_player_index].hand.length);
 	console.log(players[player_index].name + " drew " + num_to_draw + " cards");
@@ -491,6 +514,8 @@ function update_playable_cards(human_index) {
 		card_li.draggable();
 		// console.log(card_li);
 		if (player_card_valid(players[human_index].hand[i])) {
+
+			console.log("card" + i + " playable")
 			// add the draggable class
 			card_li.addClass("draggable");
 			// card_li.addClass("ui-draggable");
