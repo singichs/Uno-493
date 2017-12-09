@@ -1,5 +1,10 @@
 body {
 	text-align: center;
+	-webkit-user-select: none; /* Prevent highlight on double-click */
+	-moz-user-select: none; /* Prevent highlight on double-click */
+	-ms-user-select: none; /* Prevent highlight on double-click */
+	user-select: none; /* Prevent highlight on double-click */
+	cursor: default;
 }
 
 .gameboard {

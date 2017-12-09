@@ -135,29 +135,51 @@ function deal_cards(num_cards_in_hand) {
 function play_game() {
 	// turn over top card
 	console.log("playing the game");
-	while (!players[cur_player_index].human && !game_over) {
-		// parameter should only matter for human player
-		// console.log("who's turn: " + players[cur_player_index].name);
-		player_turn(-1);
-		update_cards_remaining();
-	}
-	// player_turn(-1);
-	// setInterval(cpu_play, 2000);
-	console.log("waiting for player");
+	display_cards();
+	update_playable_cards(3);
+	// while (!players[cur_player_index].human && !game_over) {
+	// 	// parameter should only matter for human player
+	// 	// console.log("who's turn: " + players[cur_player_index].name);
+	// 	//player_turn(-1);
+	// 	console.log("timeout started");
+	// 	setTimeout(cpu_play, 200);
+	// 	// player_turn(-1);
+	// 	// update_cards_remaining();
+	// 	var start = new Date().getTime();
+	// 	var end = start;
+	// 	while(end < (start + 3000)) {
+	// 		end = new Date().getTime();
+	// 	}
+	// 	//console.log("still in loop");
+	// }
+
 	if(players[cur_player_index].human){
 		display_cards();	
-		update_playable_cards(cur_player_index);
+		update_playable_cards(3);
 	}
 	$(".draggable").draggable();
+	setTimeout(cpu_play, 4000);
+	//player_turn(-1);
+	//setInterval(cpu_play, 5000);
+	//console.log("waiting for player");
+	// if(players[cur_player_index].human){
+	// 	display_cards();	
+	// 	update_playable_cards(cur_player_index);
+	// }
+	// $(".draggable").draggable();
 }
 
 function cpu_play(){
 	if(!players[cur_player_index].human && !game_over){
-
+		console.log("timeout expired");
 		console.log(cur_player_index + " played a card");
 		player_turn(-1);
 		update_cards_remaining();
 	}
+	
+	update_playable_cards(3);
+	$(".draggable").draggable();
+	setTimeout(cpu_play, 5500);
 }
 
 function player_turn(cardindex) {
@@ -341,7 +363,7 @@ function display_cards() {
 
 				if (cardnumber == "none") //special cards
 				{
-					card.className = "card draggable ui-draggable ui-draggable-handle";
+					card.className = "card draggable";
 					card.id = cardindex;
 					var cardimage = document.createElement("img");
 					cardimage.setAttribute('height', '140px');
@@ -375,7 +397,7 @@ function display_cards() {
 
 					// console.log(cardcolor + " " + cardnumber);
 
-					card.className = "card num-" + cardnumber + " " + cardcolor + " draggable ui-draggable ui-draggable-handle";
+					card.className = "card num-" + cardnumber + " " + cardcolor + " draggable";
 					card.id = cardindex;
 					card.style.zIndex = 1;
 					var innerspan = document.createElement("span");
@@ -463,21 +485,26 @@ function add_to_used_stack(card_index_to_add) {
 
 // on each player's turn make sure that the only draggable cards are playable cards
 function update_playable_cards(human_index) {
+	console.log("updating playable cards");
 	for (var i = 0; i < players[human_index].hand.length; i++) {
 		let card_li = $("#" + players[human_index].hand[i])
+		card_li.draggable();
 		// console.log(card_li);
 		if (player_card_valid(players[human_index].hand[i])) {
 			// add the draggable class
 			card_li.addClass("draggable");
-			card_li.addClass("ui-draggable");
-			card_li.addClass("ui-draggable-handle");
+			// card_li.addClass("ui-draggable");
+			// card_li.addClass("ui-draggable-handle");
 			card_li.addClass("card_highlight");
 		} else {
 			// remove the draggable class
 			card_li.removeClass("draggable");
-			card_li.removeClass("ui-draggable");
-			card_li.removeClass("ui-draggable-handle");
+			card_li.draggable( "disable" );
+			// card_li.removeClass("ui-draggable");
+			// card_li.removeClass("ui-draggable-handle");
 		}
+		card_li.removeClass("ui-draggable");
+		card_li.removeClass("ui-draggable-handle");
 	}
 }
 
