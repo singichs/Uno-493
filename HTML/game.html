@@ -47,7 +47,7 @@
 				<!-- <div class="col-lg-9 col-md-9 col-sm-9"> -->
 					<div class="gameboard">
 						<div class="player1">
-							<label type="text" class="player1-control" id="p1"></label></br>
+							<label type="text" class="player1-control">Jim</label></br>
 							<label type="text" class="player1-name">Cards Remaining: 
 								<label id="p1cards"></label>
 							</label>
@@ -61,7 +61,7 @@
 							</ul> 
 						</div>
 						<div class="player2">
-							<label type="text" class="player2-control" id="p2"></label></br>
+							<label type="text" class="player2-control">Bob</label></br>
 							<label type="text" class="player2-name">Cards Remaining: 
 								<label id="p2cards"></label>
 							</label>
@@ -70,7 +70,7 @@
 							</ul>
 						</div>
 						<div class="player3">
-							<label type="text" class="player3-control" id="p3"></label></br>
+							<label type="text" class="player3-control">Cooter</label></br>
 							<label type="text" class="player3-name">Cards Remaining: 
 								<label id="p3cards"></label>
 							</label>
@@ -130,6 +130,9 @@
 							<div class="deck-cards">
 								<img class="CPUhand" src="../img/facedown.png" style="z-index: 1; height:170px; width:125px;" onclick="draw_card(3,1);play_game()">
 							</div>
+							<div class="deck-cards">
+								<img class="CPUhand" id ="sliding" src="../img/facedown.png" style="z-index: -3; height:170px; width:125px;" >
+							</div>
 							<label class="turn">Your Turn</label>
 						</div>
 					</div>
@@ -155,9 +158,6 @@
          data[tmp[0]] = tmp[1];
     }
     document.getElementById('currentUsr').innerHTML = data.name;
-    document.getElementById('p1').innerHTML = data.p1;
-    document.getElementById('p2').innerHTML = data.p2;
-    document.getElementById('p3').innerHTML = data.p3;
 
 	 //    var jimCards = document.getElementById("player1-cards").getElementsByTagName('li').length;
 	 //    var bobCards = document.getElementById("player2-cards").getElementsByTagName('li').length;
