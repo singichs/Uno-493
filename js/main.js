@@ -493,6 +493,7 @@ function update_playable_cards(human_index) {
 		if (player_card_valid(players[human_index].hand[i])) {
 			// add the draggable class
 			card_li.addClass("draggable");
+			card_li.draggable( "enable" );
 			// card_li.addClass("ui-draggable");
 			// card_li.addClass("ui-draggable-handle");
 			card_li.addClass("card_highlight");
