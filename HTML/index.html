@@ -96,7 +96,8 @@
 							<input type="radio" name="background" value="background2" id="background2"> <img class="backgroundImage" src="../img/background2.png"><br>
 							<input type="radio" name="background" value="background3" id="background3"> <img class="backgroundImage" src="../img/background3.png"><br> 
 							<input type="radio" name="background" value="background4" id="background4"> <img class="backgroundImage" src="../img/background4.png"><br> 
-							<input type="radio" name="background" value="background5" id="background5"> <img class="backgroundImage" src="../img/background5.png"><br>  
+							<input type="radio" name="background" value="background5" id="background5"> <img class="backgroundImage" src="../img/background5.png"><br> 
+							<input type="radio" name="background" value="background6" id="background6"> <img class="backgroundImage" src="../img/background6.png"><br>  
 
 			      </div>
 
@@ -122,24 +123,22 @@
 		var p3 = document.getElementById("player3_name").value;
 		var bgImg = 1;
 		if(document.getElementById("background1").checked) {
-			alert(1);
 			bgImg = 1;
 		}
 		else if (document.getElementById("background2").checked) {
-			alert(2);
 			bgImg = 2;
 		}
 		else if (document.getElementById("background3").checked) {
-			alert(3);
 			bgImg = 3;
 		}
 		else if (document.getElementById("background4").checked) {
-			alert(4);
 			bgImg = 4;
 		}
 		else if (document.getElementById("background5").checked) {
-			alert(5);
 			bgImg = 5;
+		}
+		else if (document.getElementById("background6").checked) {
+			bgImg = 6;
 		}
 
 		location.href = "game.html?name=" + name + "&p1=" + p1 + "&p2=" + p2 + "&p3=" + p3 + "&bgImg=" + bgImg;

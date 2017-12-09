@@ -1,3 +1,12 @@
+html, body {
+    min-height: 100%;
+}
+
+@media (min-width: 1120px), (min-height: 630px) {
+    body { background-size: auto; }
+}
+
+
 body {
 	text-align: center;
 	-webkit-user-select: none; /* Prevent highlight on double-click */
@@ -5,6 +14,9 @@ body {
 	-ms-user-select: none; /* Prevent highlight on double-click */
 	user-select: none; /* Prevent highlight on double-click */
 	cursor: default;
+	background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
 }
 
 .gameboard {
