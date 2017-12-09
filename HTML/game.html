@@ -10,10 +10,11 @@
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 		<script type="text/javascript" src="../js/main.js"></script>
 
 	</head>
-	<body background="https://phandroid.s3.amazonaws.com/wp-content/uploads/2014/12/Ultimate-Material-Lollipop-Collection-407.png">
+	<body>
 		<nav class="navbar navbar-default navbar-fixed-top" id="nav">
 			<div class="container">
 				<div class="navbar-header">
@@ -130,6 +131,9 @@
 							<div class="deck-cards">
 								<img class="CPUhand" src="../img/facedown.png" style="z-index: 1; height:170px; width:125px;" onclick="draw_card(3,1);play_game()">
 							</div>
+							<div class="deck-cards">
+								<img class="CPUhand" id ="sliding" src="../img/facedown.png" style="z-index: -3; height:170px; width:125px;" >
+							</div>
 							<label class="turn">Your Turn</label>
 						</div>
 					</div>
@@ -155,6 +159,22 @@
          data[tmp[0]] = tmp[1];
     }
     document.getElementById('currentUsr').innerHTML = data.name;
+
+    if (data.bgImg == 1) {
+    	document.body.background = "../img/background1.png";
+    }
+    else if (data.bgImg == 2) {
+    	document.body.background = "../img/background2.png";
+    }
+    else if (data.bgImg == 3) {
+    	document.body.background = "../img/background3.png";
+    }
+    else if (data.bgImg == 4) {
+    	document.body.background = "../img/background4.png";
+    }
+    else if (data.bgImg == 5) {
+    	document.body.background = "../img/background5.png";
+    }
 
 	 //    var jimCards = document.getElementById("player1-cards").getElementsByTagName('li').length;
 	 //    var bobCards = document.getElementById("player2-cards").getElementsByTagName('li').length;

@@ -12,6 +12,16 @@ body {
 	height: 100%;
 }
 
+.turn_announcer {
+	position: absolute;
+	width: 200px;
+	height: 50px;
+	font-size: 30px;
+	color: white;
+	top: 100px;
+	left: 150px;
+}
+
 .player1 {
 	float: left;
 	position: absolute;

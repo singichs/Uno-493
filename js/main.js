@@ -171,6 +171,7 @@ function play_game() {
 
 function cpu_play(){
 	if(!players[cur_player_index].human && !game_over){
+
 		console.log("timeout expired");
 		console.log(cur_player_index + " played a card");
 		player_turn(-1);
@@ -190,7 +191,7 @@ function player_turn(cardindex) {
 	}
 	if (players[cur_player_index].human) {
 		// highlight playable cards for the player
-		
+		//$("turn_announcement").text("Your Turn");
 		play_card(cardindex);
 	} else {
 		// look in hand first for: color, number, other, then draw
@@ -233,6 +234,27 @@ function player_turn(cardindex) {
 	}	
 }
 
+function draw_animation(index)
+{
+	console.log("animating!");
+	if (index == 0)
+	{
+		$("#sliding").effect("drop", {direction:"left"}, 1000);
+	}
+	else if (index == 1)
+	{
+		$("#sliding").effect("drop", {direction:"up"}, 1000);
+	}
+	else if (index == 2)
+	{
+		$("#sliding").effect("drop", {direction:"right"}, 1000);
+	}
+	else 
+	{
+		$("#sliding").effect("drop", {direction:"down"}, 1000);
+	}
+
+}
 
 function draw_card(player_index, num_to_draw) {
 	// TODO add in actual loop  that draws multiple cards
@@ -245,6 +267,7 @@ function draw_card(player_index, num_to_draw) {
 	// console.log(players[3].hand)
 	let p4hand = document.getElementById('player4-cards');
 	p4hand.innerHTML = "";
+	draw_animation(player_index);
 	display_cards();
 	// console.log("cards in hand for " + players[cur_player_index].name + " " + players[cur_player_index].hand.length);
 	console.log(players[player_index].name + " drew " + num_to_draw + " cards");
@@ -491,6 +514,8 @@ function update_playable_cards(human_index) {
 		card_li.draggable();
 		// console.log(card_li);
 		if (player_card_valid(players[human_index].hand[i])) {
+
+			console.log("card" + i + " playable")
 			// add the draggable class
 			card_li.addClass("draggable");
 			card_li.draggable( "enable" );
@@ -526,7 +551,20 @@ function player_card_valid(player_card_index) {
 }
 
 
+window.setInterval(function(){
 
+name = players[cur_player_index].name;
+
+if (name == "human boi")
+{
+	document.getElementById("turn_announcement").innerHTML = "Your Turn";
+}
+else
+{
+	document.getElementById("turn_announcement").innerHTML = name + "'s Turn";
+}
+
+}, 50);
 
 
 
