@@ -35,6 +35,18 @@ body {
 	left: 150px;
 }
 
+.arrow-clockwise {
+	height: 75px;
+	width: 75px;
+	-webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.arrow-counterclockwise {
+	height: 75px;
+	width: 75px;
+}
+
 label {
 	color: white;
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;

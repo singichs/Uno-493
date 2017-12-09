@@ -120,6 +120,7 @@ function deal_cards(num_cards_in_hand) {
 	}
 	console.log(players);
 	last_played_card = deck.pop();
+	add_to_used_stack(last_played_card);
 	console.log("last played card: " + list_of_cards[last_played_card].color + " " + list_of_cards[last_played_card].number + " " + list_of_cards[last_played_card].special)
 	// set number of cards remaining in hand
 	// player1-cards
@@ -334,7 +335,12 @@ function play_card(loc_in_list) {
 	} else if (list_of_cards[last_played_card].special == "reverse") {
 		if (clockwise_dir) {
 			clockwise_dir = false;
+			$("#turn_direction").removeClass("arrow-clockwise");
+			$("#turn_direction").addClass("arrow-counterclockwise");
+
 		} else {
+			$("#turn_direction").removeClass("arrow-counterclockwise");
+			$("#turn_direction").addClass("arrow-clockwise");
 			clockwise_dir = true;
 		}
 	} else if (list_of_cards[last_played_card].special == "skip") {
