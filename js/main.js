@@ -508,7 +508,6 @@ function add_to_used_stack(card_index_to_add) {
 
 // on each player's turn make sure that the only draggable cards are playable cards
 function update_playable_cards(human_index) {
-	console.log("updating playable cards");
 	for (var i = 0; i < players[human_index].hand.length; i++) {
 		let card_li = $("#" + players[human_index].hand[i])
 		card_li.draggable();
