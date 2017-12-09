@@ -1,10 +1,25 @@
 body {
 	text-align: center;
+	-webkit-user-select: none; /* Prevent highlight on double-click */
+	-moz-user-select: none; /* Prevent highlight on double-click */
+	-ms-user-select: none; /* Prevent highlight on double-click */
+	user-select: none; /* Prevent highlight on double-click */
+	cursor: default;
 }
 
 .gameboard {
 	width: 100%;
 	height: 100%;
+}
+
+.turn_announcer {
+	position: absolute;
+	width: 200px;
+	height: 50px;
+	font-size: 30px;
+	color: white;
+	top: 100px;
+	left: 150px;
 }
 
 .player1 {
@@ -67,8 +82,10 @@ body {
 
 .deck-cards {
   position: absolute;
-  top: 300px;
+  top: 305px;
   left: 500px;
+  height: 170px;
+  width: 125px;
 }
 
 .played-cards {
