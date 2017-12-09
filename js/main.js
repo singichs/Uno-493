@@ -299,6 +299,7 @@ function play_card(loc_in_list) {
 	var loc_in_hand = players[cur_player_index].hand.indexOf(Number(loc_in_list));
 	// console.log("location in hand removed: " + loc_in_hand);
 	// console.log("location searched for: " + loc_in_list);
+	play_animation(cur_player_index);
 	players[cur_player_index].hand.splice(loc_in_hand, 1);
 	add_to_used_stack(loc_in_list);
 
@@ -562,6 +563,24 @@ function player_card_valid(player_card_index) {
 }
 
 
+function play_animation(index)
+{
+	if (index == 0)
+	{
+		$("#p1slide").effect("drop", {direction:"right"}, 1000);
+	}
+	else if (index == 1)
+	{
+		$("#p2slide").effect("drop", {direction:"down"}, 1000);
+	}
+	else if (index == 2)
+	{
+		$("#p3slide").effect("drop", {direction:"left"}, 1000);
+	}
+
+}
+
+
 window.setInterval(function(){
 
 var name = players[cur_player_index].name;
@@ -576,7 +595,3 @@ else
 }
 
 }, 50);
-
-
-
-
