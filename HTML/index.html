@@ -48,7 +48,7 @@
 			  <input type="text" class="form-control" id="usr">
 			</div>
 			<button class="btn btn-default" id="submitButton" onclick="tempFunction()">Start the Game!</button>
-		</br>
+			</br>
 			<button class="btn btn-default" id="submitButton" data-toggle="modal" data-target="#exampleModal">Instructions</button>
 			<!-- Modal -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -69,24 +69,33 @@
 			    </div>
 			  </div>
 			</div>
-		</br>
-			<button class="btn btn-default" id="submitButton" data-toggle="modal" data-target="#exampleModal2">Customize</button>
+			</br>
+			<button class="btn btn-default" id="submitButton" data-toggle="modal" data-target="#customizeModal">Customize</button>
 			<!-- Modal -->
-			<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal fade" id="customizeModal" tabindex="-1" role="dialog" aria-labelledby="customizeModalLabel" aria-hidden="true">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
+
 			      <div class="modal-header">
-			        <h5 class="modal-title" id="exampleModalLabel">Customize</h5>
+			        <h5 class="modal-title" id="customizeModalLabel">Customize</h5>
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			          <span aria-hidden="true">&times;</span>
 			        </button>
 			      </div>
+
 			      <div class="modal-body">
-			        Customize your game on UNO!
+			        Customize your game on UNO! <br>
+							Player 1 Name: <input type="text" id="player1_name" name="player1_name" value="Jim"><br>
+							Player 2 Name: <input type="text" id="player2_name" name="player2_name" value="Bob"><br>
+							Player 3 Name: <input type="text" id="player3_name" name="player3_name" value="Cooter"><br>
+
+
 			      </div>
+
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			      </div>
+
 			    </div>
 			  </div>
 			</div>
@@ -100,6 +109,12 @@
 		if(name == ""){
 			name = "You";
 		}
-		location.href = "game.html?name=" + name;
+		var p1 = document.getElementById("player1_name").value;
+		var p2 = document.getElementById("player2_name").value;
+		var p3 = document.getElementById("player3_name").value;
+		location.href = "game.html?name=" + name + "&p1=" + p1 + "&p2=" + p2 + "&p3=" + p3;
 	}
 </script>
+
+
+
