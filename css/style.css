@@ -32,3 +32,11 @@ body {
     width: 150px; /* Set a small width */
     height: 100px;
 }
+
+.cardbackImage {
+	border: 1px solid #ddd; /* Gray border */
+    border-radius: 5px;  /* Rounded border */
+    padding: 5px; /* Some padding */
+    width: 70px; /* Set a small width */
+    height: 100px;
+}

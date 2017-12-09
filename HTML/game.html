@@ -58,7 +58,7 @@
 										<span class="mark">0</span>
 									</span>
 								</li>-->
-								<img class= "CPUhand" src = "../img/facedown.png">
+								<img class= "CPUhand facedownCard">
 							</ul> 
 						</div>
 						<div class="player2">
@@ -67,7 +67,7 @@
 								<label id="p2cards"></label>
 							</label>
 							<ul id="player2-cards" class="player2-cards">
-								<img class= "CPUhand" src = "../img/facedown.png">
+								<img class= "CPUhand facedownCard">
 							</ul>
 						</div>
 						<div class="player3">
@@ -76,7 +76,7 @@
 								<label id="p3cards"></label>
 							</label>
 							<ul id="player3-cards" class="player3-cards">
-								<img class= "CPUhand" src = "../img/facedown.png">
+								<img class= "CPUhand facedownCard">
 								<!-- <li class="card num-0 red">
 									<span class="inner">
 										<span class="mark">0</span>
@@ -131,10 +131,10 @@
 								</li>
 							</ul>
 							<div class="deck-cards">
-								<img class="CPUhand" src="../img/facedown.png" style="z-index: 1; height:170px; width:125px;" onclick="draw_card(3,1);play_game()">
+								<img class="CPUhand facedownCard" style="z-index: 1; height:170px; width:125px;" onclick="draw_card(3,1);play_game()">
 							</div>
 							<div class="deck-cards">
-								<img class="CPUhand" id ="sliding" src="../img/facedown.png" style="z-index: -3; height:170px; width:125px;" >
+								<img class="CPUhand facedownCard" id="sliding" style="z-index: -3; height:170px; width:125px;" >
 							</div>
 							<label class="turn">Your Turn</label>
 						</div>
@@ -179,6 +179,50 @@
     else if (data.bgImg == 6) {
     	document.body.background = "../img/background6.png";
     }
+
+    if (data.cbImg == 1) {
+    	document.getElementsByClassName("facedownCard")[0].src="../img/cardback1.png";
+    	document.getElementsByClassName("facedownCard")[1].src="../img/cardback1.png";
+    	document.getElementsByClassName("facedownCard")[2].src="../img/cardback1.png";
+    	document.getElementsByClassName("facedownCard")[3].src="../img/cardback1.png";
+    	document.getElementsByClassName("facedownCard")[4].src="../img/cardback1.png";
+    }
+    else if (data.cbImg == 2) {
+    	document.getElementsByClassName("facedownCard")[0].src="../img/cardback2.png";
+    	document.getElementsByClassName("facedownCard")[1].src="../img/cardback2.png";
+    	document.getElementsByClassName("facedownCard")[2].src="../img/cardback2.png";
+    	document.getElementsByClassName("facedownCard")[3].src="../img/cardback2.png";
+    	document.getElementsByClassName("facedownCard")[4].src="../img/cardback2.png";
+    }
+    else if (data.cbImg == 3) {
+    	document.getElementsByClassName("facedownCard")[0].src="../img/cardback3.png";
+    	document.getElementsByClassName("facedownCard")[1].src="../img/cardback3.png";
+    	document.getElementsByClassName("facedownCard")[2].src="../img/cardback3.png";
+    	document.getElementsByClassName("facedownCard")[3].src="../img/cardback3.png";
+    	document.getElementsByClassName("facedownCard")[4].src="../img/cardback3.png";
+    }
+    else if (data.cbImg == 4) {
+    	document.getElementsByClassName("facedownCard")[0].src="../img/cardback4.png";
+    	document.getElementsByClassName("facedownCard")[1].src="../img/cardback4.png";
+    	document.getElementsByClassName("facedownCard")[2].src="../img/cardback4.png";
+    	document.getElementsByClassName("facedownCard")[3].src="../img/cardback4.png";
+    	document.getElementsByClassName("facedownCard")[4].src="../img/cardback4.png";
+    }
+    else if (data.cbImg == 5) {
+    	document.getElementsByClassName("facedownCard")[0].src="../img/cardback5.png";
+    	document.getElementsByClassName("facedownCard")[1].src="../img/cardback5.png";
+    	document.getElementsByClassName("facedownCard")[2].src="../img/cardback5.png";
+    	document.getElementsByClassName("facedownCard")[3].src="../img/cardback5.png";
+    	document.getElementsByClassName("facedownCard")[4].src="../img/cardback5.png";
+    }
+    else if (data.cbImg == 6) {
+    	document.getElementsByClassName("facedownCard")[0].src="../img/cardback6.png";
+    	document.getElementsByClassName("facedownCard")[1].src="../img/cardback6.png";
+    	document.getElementsByClassName("facedownCard")[2].src="../img/cardback6.png";
+    	document.getElementsByClassName("facedownCard")[3].src="../img/cardback6.png";
+    	document.getElementsByClassName("facedownCard")[4].src="../img/cardback6.png";
+    }
+
 	 //    var jimCards = document.getElementById("player1-cards").getElementsByTagName('li').length;
 	 //    var bobCards = document.getElementById("player2-cards").getElementsByTagName('li').length;
 	 //    var cooterCards = document.getElementById("player3-cards").getElementsByTagName('li').length;

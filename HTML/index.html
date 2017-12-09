@@ -99,6 +99,13 @@
 							<input type="radio" name="background" value="background5" id="background5"> <img class="backgroundImage" src="../img/background5.png"><br> 
 							<input type="radio" name="background" value="background6" id="background6"> <img class="backgroundImage" src="../img/background6.png"><br>  
 
+							<h3>Choose a Card Background:</h3>
+							<input type="radio" name="cardback" value="cardback1" id="cardback1" checked> <img class="cardbackImage" src="../img/cardback1.png"><br>
+							<input type="radio" name="cardback" value="cardback2" id="cardback2"> <img class="cardbackImage" src="../img/cardback2.png"><br>
+							<input type="radio" name="cardback" value="cardback3" id="cardback3"> <img class="cardbackImage" src="../img/cardback3.png"><br> 
+							<input type="radio" name="cardback" value="cardback4" id="cardback4"> <img class="cardbackImage" src="../img/cardback4.png"><br> 
+							<input type="radio" name="cardback" value="cardback5" id="cardback5"> <img class="cardbackImage" src="../img/cardback5.png"><br> 
+
 			      </div>
 
 			      <div class="modal-footer">
@@ -141,7 +148,24 @@
 			bgImg = 6;
 		}
 
-		location.href = "game.html?name=" + name + "&p1=" + p1 + "&p2=" + p2 + "&p3=" + p3 + "&bgImg=" + bgImg;
+		var cbImg = 1;
+		if(document.getElementById("cardback1").checked) {
+			cbImg = 1;
+		}
+		else if (document.getElementById("cardback2").checked) {
+			cbImg = 2;
+		}
+		else if (document.getElementById("cardback3").checked) {
+			cbImg = 3;
+		}
+		else if (document.getElementById("cardback4").checked) {
+			cbImg = 4;
+		}
+		else if (document.getElementById("cardback5").checked) {
+			cbImg = 5;
+		}
+
+		location.href = "game.html?name=" + name + "&p1=" + p1 + "&p2=" + p2 + "&p3=" + p3 + "&bgImg=" + bgImg + "&cbImg=" + cbImg;
 	}
 </script>
 

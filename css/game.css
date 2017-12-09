@@ -19,6 +19,10 @@ body {
     background-size: cover;
 }
 
+.facedownCard {
+    border-radius: 5px;  /* Rounded border */
+}
+
 .gameboard {
 	width: 100%;
 	height: 100%;
