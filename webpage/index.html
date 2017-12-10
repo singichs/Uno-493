@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Uno</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="./css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="./css/magnific-popup.css" rel="stylesheet">
+
+    <!-- favicon link -->
+    <link rel="shortcut icon" type="image/png" href="http://unoooo.com/wp-content/uploads/2016/02/Uno-Game.png"/>
+
+    <!-- Custom styles for this template -->
+    <link href="./css/creative.css" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">UNO</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#background">Rules</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#features">Special Cards</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#gamePlay">Game Play</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#screen">Screens</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="masthead text-center text-white d-flex">
+      <div class="container my-auto">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <h1 class="text-uppercase">
+              <strong>Uno</strong>
+            </h1>
+            <h3>
+              <strong>EECS 493 Fall '17</strong><br>
+              <strong>Nithin Adapa — Zain Ahmed — Joe Kunnath - Sagar Singichetti</strong>
+            </h3>
+            <hr>
+          </div>
+          <div class="col-lg-8 mx-auto">
+            <p><strong>Web application built using HTML, CSS, Javascript, JQuery, JQueryUI and Bootstrap to simulate UNO gameplay.</strong></p>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#background">Find Out More</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="bg-primary" id="background">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading text-white">Rules</h2>
+            <hr class="light my-4">
+            <p class="text-faded mb-4">The object of the game is to get rid of all your cards. To win, you have to do this before any of the three other computer players do!</p>
+            <p class="text-faded mb-4">Every player starts with seven cards, and they are dealt face down. You can only see your hand. The rest of the cards are placed in a Draw Pile face down. Next to the pile, there is a Discard Pile for all the cards that have been played.</p>
+            <p class="text-faded mb-4">Play your cards by matching the card on the discard pile in number, color, or type. For example, if the card on the discard pile is a yellow 5 you can play any number 5 card, any yellow card, or a wild card.</p>
+            <p class="text-faded mb-4">If you can't match the card on the discard pile (or choose not to play a card) you must draw a card and game play will move on to the next player.</p>
+            <p class="text-faded mb-4">When the Draw Pile becomes depleted, all of the cards in the discard pile will be shuffled and added to the draw pile.</p>
+
+            <a class="btn btn-light btn-xl js-scroll-trigger" href="#features">Special Cards</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading">Special Cards</h2>
+            <hr class="my-4">
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <!-- <i class="fa fa-4x fa-diamond text-primary mb-3 sr-icons"></i> -->
+              <img id="card" src="./img/redskip.png" style="height:150px;width:auto;">
+              <h3 class="mb-3">Skip</h3>
+              <p class="text-muted mb-0">When a player places this card, the next player has to skip their turn.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <!-- <i class="fa fa-4x fa-paper-plane text-primary mb-3 sr-icons"></i> -->
+              <img id="card" src="./img/bluedraw2.png" style="height:150px;width:auto;">
+              <h3 class="mb-3">Draw Two</h3>
+              <p class="text-muted mb-0">When a person places this card, the next player will have to pick up two cards and forfeit his/her turn.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <!-- <i class="fa fa-4x fa-newspaper-o text-primary mb-3 sr-icons"></i> -->
+              <img id="card" src="./img/greenreverse.png" style="height:150px;width:auto;">
+              <h3 class="mb-3">Reverse</h3>
+              <p class="text-muted mb-0">If gameplay is going clockwise, switch to counterclockwise or vice versa.</p>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <!-- <i class="fa fa-4x fa-heart text-primary mb-3 sr-icons"></i> -->
+              <img id="card" src="./img/wild.png" style="height:150px;width:auto;">
+              <h3 class="mb-3">Wild</h3>
+              <p class="text-muted mb-0">This card represents all four colors, and can be placed on any card. The color will be chosen for you based on the most frequest color in your hand. It can be played regardless of whether another card is available.</p>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <!-- <i class="fa fa-4x fa-heart text-primary mb-3 sr-icons"></i> -->
+              <img id="card" src="./img/wild-draw-4.png" style="height:150px;width:auto;">
+              <h3 class="mb-3">Wild Draw Four</h3>
+              <p class="text-muted mb-0">This acts just like the wild card except that the next player also has to draw four cards as well as forfeit his/her turn.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <br>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#gamePlay">Game Play</a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="bg-primary" id="gamePlay">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-white">Customization</h2>
+            <hr class="light my-4"><br>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h3 class="section-heading text-white">Game Screen Backgrounds</h3>
+            <hr class="light my-4">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <img id="card" src="./img/background1.png" style="height:150px;width:auto;">
+              <h3 class="mb-3 text-white">Mountain Valley</h3>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <img id="card" src="./img/background2.png" style="height:150px;width:auto;">
+              <h3 class="mb-3 text-white">Ice Caped Mountains</h3>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <img id="card" src="./img/background3.png" style="height:150px;width:auto;">
+              <h3 class="mb-3 text-white">Michigan Block M</h3>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <img id="card" src="./img/background4.png" style="height:150px;width:auto;">
+              <h3 class="mb-3 text-white">Urban</h3>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <img id="card" src="./img/background5.png" style="height:150px;width:auto;">
+              <h3 class="mb-3 text-white">Space Trek</h3>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <img id="card" src="./img/background6.png" style="height:150px;width:auto;">
+              <h3 class="mb-3 text-white">Adventure</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <hr class="light my-4"><br>
+            <h3 class="section-heading text-white">Card Backgrounds</h3>
+            <hr class="light my-4">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <img id="card" src="./img/cardback1.png" style="height:150px;width:auto;">
+              <h3 class="mb-3 text-white">Standard UNO</h3>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <img id="card" src="./img/cardback2.png" style="height:150px;width:auto;">
+              <h3 class="mb-3 text-white">Professor Ackerman</h3>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <img id="card" src="./img/cardback3.png" style="height:150px;width:auto;">
+              <h3 class="mb-3 text-white">Michigan Block M</h3>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <img id="card" src="./img/cardback4.png" style="height:150px;width:auto;">
+              <h3 class="mb-3 text-white">Magic</h3>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <img id="card" src="./img/cardback5.png" style="height:150px;width:auto;">
+              <h3 class="mb-3 text-white">Standard Blue</h3>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <img id="card" src="./img/cardback6.png" style="height:150px;width:auto;">
+              <h3 class="mb-3 text-white">Standard Red</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <br>
+            <a class="btn btn-light btn-xl js-scroll-trigger" href="#screen">Screens</a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+    
+    <section id="screen">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading">Game Screens</h2>
+            <hr class="my-4">
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <img id="screenPic" src="./img/splashPage.png" style="height:300px;width:auto;">
+              <p class="text-muted mb-4">Home page that allows the User to Enter their name, read the instructions, customize the game play, and start the game.</p>
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-12 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <img id="screenPic" src="./img/gameboard.png" style="height:300px;width:auto;">
+              <p class="text-muted mb-4">This is a view of the gameboard during gameplay.</p>
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-12 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <img id="screenPic" src="./img/centerConsole.png" style="height:300px;width:auto;">
+              <p class="text-muted mb-4">There is a deck of available cards to be drawn as well as a discard pile in the center of the board. If a player needs to draw a card, they can click on the deck to draw a card. If the user wants to play a card, then they can drag and drop their playing card onto the discard pile. Both of these moves are used to continue gameplay to the next player.</p>
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-12 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <img id="screenPic" src="./img/turnmarker.png" style="height:300px;width:auto;">
+              <p class="text-muted mb-4">This turnmarker will change colors and direction based on the color of the current card played and the direction of gameplay to help the user keep track of whose turn it is and what cards are available to play.</p>
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-12 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <img id="screenPic" src="./img/playerHand.png" style="height:300px;width:auto;">
+              <p class="text-muted mb-4">This is the player hand and cards that are available to be played will react when moused over.</p>
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-12 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <img id="screenPic" src="./img/statsPage.png" style="height:300px;width:auto;">
+              <p class="text-muted mb-4">After a player has won the game, this page will appear displaying the stats of the game. It will list the winner of the game as well as point totals and point breakdowns accumulated throughout the game.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <br>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#contact">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-primary" id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading text-white">Contact Us</h2>
+            <hr class="light my-4">
+            <p class="text-faded mb-5">If you have any comments, questions, or concerns, please contact us at</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <p>
+              <a class="text-faded" href="mailto:uno-lads-493@umich.edu">uno-lads-493@umich.edu</a>
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-8 mx-auto text-center">
+          <br>
+          <a class="btn btn-light btn-xl js-scroll-trigger" href="#page-top">Uno</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/scrollreveal.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/creative.min.js"></script>
+
+  </body>
+
+</html>
