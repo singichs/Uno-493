@@ -10,6 +10,8 @@ $( document ).ready(function(){
 	play_game();
 	console.log(players);
 
+
+
 });
 
 var list_of_cards = [];
@@ -334,6 +336,7 @@ function play_card(loc_in_list) {
 		console.log("game over, " + players[cur_player_index].name + " is the winner!");
 		game_over = true;
 		localStorage.setItem("players", JSON.stringify(players));
+		localStorage.setItem("player_won", players[cur_player_index].name);
 		window.location.href = "../HTML/end_game.html";
 	}
 	// console.log("checking specials: " + list_of_cards[last_played_card].special);
@@ -582,6 +585,7 @@ function update_playable_cards(human_index) {
 			// add the draggable class
 			card_li.addClass("draggable");
 			card_li.draggable( "enable" );
+			card_li.draggable({containment: 'window'} );
 			// card_li.addClass("ui-draggable");
 			// card_li.addClass("ui-draggable-handle");
 			card_li.addClass("card_highlight");
