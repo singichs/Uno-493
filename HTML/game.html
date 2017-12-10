@@ -52,66 +52,59 @@
 
 		<div class="container">
 			<div class="row">
-				<!-- <div class="col-lg-9 col-md-9 col-sm-9"> -->
-					<div class="gameboard">
-						<div class="player1">
-							<label type="text" class="player1-control" id="p1name">Jim</label></br>
-							<label type="text" class="player1-name">Cards Remaining: 
-								<label id="p1cards"></label>
-							</label>
-							<ul id="player1-cards" class="player1-cards">
-								<!--<li class="card num-0 blue">
-									<span class="inner">
-										<span class="mark">0</span>
-									</span>
-								</li>-->
-								<img class= "CPUhand facedownCard" style="z-index: 1; position: absolute; left: 20px;">
-								<img class= "CPUhand facedownCard" id="p1slide" style="z-index: -1; position: absolute; left: 20px;">
-							</ul> 
+				<div class="gameboard">
+					<div class="player1">
+						<label type="text" class="player1-control" id="p1name">Jim</label></br>
+						<label type="text" class="player1-name">Cards Remaining: 
+							<label id="p1cards"></label>
+						</label>
+						<ul id="player1-cards" class="player1-cards">
+							<img class= "CPUhand facedownCard" style="z-index: 1; position: absolute; left: 20px;">
+							<img class= "CPUhand facedownCard" id="p1slide" style="z-index: -1; position: absolute; left: 20px;">
+						</ul> 
+					</div>
+					<div class="player2">
+						<label type="text" class="player2-control" id="p2name">Bob</label></br>
+						<label type="text" class="player2-name">Cards Remaining: 
+							<label id="p2cards"></label>
+						</label>
+						<ul id="player2-cards" class="player2-cards">
+							<img class= "CPUhand facedownCard" style="z-index: 1; position: absolute; left: 50px;">
+							<img class= "CPUhand facedownCard" id="p2slide" style="z-index: -1; position: absolute; left: 50px;">
+						</ul>
+					</div>
+					<div class="player3">
+						<label type="text" class="player3-control" id="p3name">Cooter</label></br>
+						<label type="text" class="player3-name">Cards Remaining: 
+							<label id="p3cards"></label>
+						</label>
+						<ul id="player3-cards" class="player3-cards">
+							<img class= "CPUhand facedownCard" style="z-index: 1; position: absolute; left: 0px;">
+							<img class= "CPUhand facedownCard" id="p3slide" style="z-index: -1; position: absolute; left: 0px;">
+						</ul>
+					</div>
+					<div class="player4">
+						<label type="text" class="player4-control" id="currentUsr"></label></br>
+						<ul id="player4-cards" class="player4-cards">
+						</ul>
+					</div>
+					<div class="center">
+						<div class="turn_announcer">
+							<p id = "turn_announcement"></p>
+							<img id="turn_direction" class="arrow-clockwise" src="../img/3arrows.png"/>
 						</div>
-						<div class="player2">
-							<label type="text" class="player2-control" id="p2name">Bob</label></br>
-							<label type="text" class="player2-name">Cards Remaining: 
-								<label id="p2cards"></label>
-							</label>
-							<ul id="player2-cards" class="player2-cards">
-								<img class= "CPUhand facedownCard" style="z-index: 1; position: absolute; left: 50px;">
-								<img class= "CPUhand facedownCard" id="p2slide" style="z-index: -1; position: absolute; left: 50px;">
-							</ul>
+						<ul class="played-cards" id="droppable">
+							<li class="card num-9 blue" id="centerCard" style="z-index: 1">
+							</li>
+						</ul>
+						<div class="deck-cards">
+							<img class="CPUhand facedownCard" id="sliding" style="z-index: 3; height:170px; width:125px;" onclick="check_draw_card();">
 						</div>
-						<div class="player3">
-							<label type="text" class="player3-control" id="p3name">Cooter</label></br>
-							<label type="text" class="player3-name">Cards Remaining: 
-								<label id="p3cards"></label>
-							</label>
-							<ul id="player3-cards" class="player3-cards">
-								<img class= "CPUhand facedownCard" style="z-index: 1; position: absolute; left: 0px;">
-								<img class= "CPUhand facedownCard" id="p3slide" style="z-index: -1; position: absolute; left: 0px;">
-							</ul>
-						</div>
-						<div class="player4">
-							<label type="text" class="player4-control" id="currentUsr"></label></br>
-							<ul id="player4-cards" class="player4-cards">
-							</ul>
-						</div>
-						<div class="center">
-							<div class="turn_announcer">
-								<p id = "turn_announcement"></p>
-								<img id="turn_direction" class="arrow-clockwise" src="../img/3arrows.png"/>
-							</div>
-							<ul class="played-cards" id="droppable">
-								<li class="card num-9 blue" id="centerCard" style="z-index: 1">
-								</li>
-							</ul>
-							<div class="deck-cards">
-								<img class="CPUhand facedownCard" id="sliding" style="z-index: 3; height:170px; width:125px;" onclick="check_draw_card();">
-							</div>
-							<div class="deck-cards">
-								<img class="CPUhand facedownCard" style="z-index: 1; height:170px; width:125px;" onclick="check_draw_card();">
-							</div>
-							<label class="turn">Your Turn</label>
+						<div class="deck-cards">
+							<img class="CPUhand facedownCard" style="z-index: 1; height:170px; width:125px;" onclick="check_draw_card();">
 						</div>
 					</div>
+				</div>
 			</div>
 		</div>
 

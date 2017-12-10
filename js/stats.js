@@ -16,8 +16,3 @@ $( document ).ready(function() {
 		document.getElementById((i+1) + "yellow").innerHTML = value[i].colors_played['yellow'] + " yellow";
 	}
 });
-
-function go_to_game_over_screen() {
-	console.log("go back to game over screen");
-	document.location.href = "end_game.html";
-}

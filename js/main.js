@@ -10,18 +10,6 @@ $( document ).ready(function(){
 	play_game();
 	console.log(players);
 
-	// var data = [];
-	// var url = document.location.href,
- //        params = url.split('?')[1].split('&'),
- //        data = {}, tmp;
- //    for (var i = 0, l = params.length; i < l; i++) {
- //         tmp = params[i].split('=');
- //         data[tmp[0]] = tmp[1];
- //    }
- //    localStorage.setItem("names", JSON.stringify(data));
-
-
-
 });
 
 var list_of_cards = [];
@@ -93,9 +81,7 @@ function initialize_players(num_cpu) {
 		players.push(new Player(std_names[name_idx], false));
 		++name_idx;
 	}
-	// players.push(new Player("Jim", false));
-	// players.push(new Player("Bob", false));
-	// players.push(new Player("Cooter", false));
+
 	if (value["name"]) {
 		let user_name = value["name"];
 		user_name = user_name.replace(/%20/g, " ");
@@ -104,7 +90,7 @@ function initialize_players(num_cpu) {
 	} else {
 		players.push(new Player("You", true));
 	}
-	// console.log(players);
+
 	for (let i = 0; i < (players.length - 1); i++) {
 		console.log(i);
 		$("#p" + (i + 1) + "name").html(players[i].name);
@@ -193,21 +179,6 @@ function play_game() {
 	console.log("playing the game");
 	display_cards();
 	update_playable_cards(3);
-	// while (!players[cur_player_index].human && !game_over) {
-	// 	// parameter should only matter for human player
-	// 	// console.log("who's turn: " + players[cur_player_index].name);
-	// 	//player_turn(-1);
-	// 	console.log("timeout started");
-	// 	setTimeout(cpu_play, 200);
-	// 	// player_turn(-1);
-	// 	// update_cards_remaining();
-	// 	var start = new Date().getTime();
-	// 	var end = start;
-	// 	while(end < (start + 3000)) {
-	// 		end = new Date().getTime();
-	// 	}
-	// 	//console.log("still in loop");
-	// }
 
 	if(players[cur_player_index].human){
 		display_cards();	
@@ -215,14 +186,6 @@ function play_game() {
 	}
 	$(".draggable").draggable();
 	setTimeout(cpu_play, 4000);
-	//player_turn(-1);
-	//setInterval(cpu_play, 5000);
-	//console.log("waiting for player");
-	// if(players[cur_player_index].human){
-	// 	display_cards();	
-	// 	update_playable_cards(cur_player_index);
-	// }
-	// $(".draggable").draggable();
 }
 
 function cpu_play(){
@@ -329,8 +292,7 @@ function draw_card(player_index, num_to_draw) {
 	}
 	players[player_index].cards_drawn += num_to_draw;
 	players[player_index].total_cards += num_to_draw;
-	// console.log(players);
-	// console.log(players[3].hand)
+
 	draw_animation(player_index);
 	setTimeout(delay_display_continue(player_index, num_to_draw), 2000);
 	//delay_display_continue(player_index, num_to_draw);
@@ -340,8 +302,6 @@ function delay_display_continue(player_index, num_to_draw){
 	let p4hand = document.getElementById('player4-cards');
 	p4hand.innerHTML = "";
 	display_cards();
-	// console.log("cards in hand for " + players[cur_player_index].name + " " + players[cur_player_index].hand.length);
-	console.log(players[player_index].name + " drew " + num_to_draw + " cards");
 	player_drawn_this_turn = false;
 	get_next_player();
 	play_game();
@@ -352,7 +312,6 @@ function play_card(loc_in_list) {
 	// for (var i = 0; i < players[cur_player_index].hand.length; i++) {
 	// 	//console.log(list_of_cards[players[cur_player_index].hand[i]].color + " " + list_of_cards[players[cur_player_index].hand[i]].number + " " + list_of_cards[players[cur_player_index].hand[i]].special);
 	// }
-	console.log(players[cur_player_index].name + " plays a " + list_of_cards[loc_in_list].color + " " + list_of_cards[loc_in_list].number + " " + list_of_cards[loc_in_list].special)
 	used_deck.push(last_played_card);
 	last_played_card = loc_in_list;
 	if (list_of_cards[last_played_card].color == "none" && list_of_cards[last_played_card].special != "none") {
