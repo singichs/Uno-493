@@ -329,8 +329,8 @@ function play_card(loc_in_list) {
 	} else if (players[cur_player_index].hand.length == 0) {
 		console.log("game over, " + players[cur_player_index].name + " is the winner!");
 		game_over = true;
-		localStorage.setItem("players", players);
-		// window.location.href = "../HTML/end_game.html";
+		localStorage.setItem("players", JSON.stringify(players));
+		window.location.href = "../HTML/end_game.html";
 	}
 	// console.log("checking specials: " + list_of_cards[last_played_card].special);
 	if (list_of_cards[last_played_card].special == "draw2") {
