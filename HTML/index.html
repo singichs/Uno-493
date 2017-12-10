@@ -57,7 +57,7 @@
 			      <div class="modal-header">
 			        <h5 class="modal-title" id="informationModalLabel">UNO Instructions</h5>
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
+			          <span aria-hidden="true">&times;</span><br>
 			        </button>
 			        <br/>
 			      </div>
@@ -119,35 +119,38 @@
 			      <div class="modal-header">
 			        <h5 class="modal-title" id="customizeModalLabel">Customize</h5>
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
+			          <span aria-hidden="true">&times;</span><br/>
 			        </button>
 			        <br/>
 			      </div>
 
 			      <div class="modal-body">
-			        <h2>Customize your game on UNO!</h2>
-			        <br>
-			        <h3>Edit Player Names:</h3>
-							Player 1 Name: <input type="text" id="player1_name" name="player1_name" value="Jim"><br>
-							Player 2 Name: <input type="text" id="player2_name" name="player2_name" value="Bob"><br>
-							Player 3 Name: <input type="text" id="player3_name" name="player3_name" value="Cooter"><br>
-							<br>
-							<h3>Choose a Game Background:</h3>
-							<input type="radio" name="background" value="background1" id="background1" checked> <img class="backgroundImage" src="../img/background1.png"><br>
-							<input type="radio" name="background" value="background2" id="background2"> <img class="backgroundImage" src="../img/background2.png"><br>
-							<input type="radio" name="background" value="background3" id="background3"> <img class="backgroundImage" src="../img/background3.png"><br> 
-							<input type="radio" name="background" value="background4" id="background4"> <img class="backgroundImage" src="../img/background4.png"><br> 
-							<input type="radio" name="background" value="background5" id="background5"> <img class="backgroundImage" src="../img/background5.png"><br> 
-							<input type="radio" name="background" value="background6" id="background6"> <img class="backgroundImage" src="../img/background6.png"><br>  
-
-							<h3>Choose a Card Background:</h3>
-							<input type="radio" name="cardback" value="cardback1" id="cardback1" checked> <img class="cardbackImage" src="../img/cardback1.png"><br>
-							<input type="radio" name="cardback" value="cardback2" id="cardback2"> <img class="cardbackImage" src="../img/cardback2.png"><br>
-							<input type="radio" name="cardback" value="cardback3" id="cardback3"> <img class="cardbackImage" src="../img/cardback3.png"><br> 
-							<input type="radio" name="cardback" value="cardback4" id="cardback4"> <img class="cardbackImage" src="../img/cardback4.png"><br> 
-							<input type="radio" name="cardback" value="cardback5" id="cardback5"> <img class="cardbackImage" src="../img/cardback5.png"><br> 
-							<input type="radio" name="cardback" value="cardback6" id="cardback6"> <img class="cardbackImage" src="../img/cardback6.png"><br> 
-
+			      	<div id="customizeContainer">
+			      		<div id="editNames">
+					        <div class="head">Edit Player Names:</div>
+									<div class="paragraph"> Player 1 Name: <input type="text" id="player1_name" name="player1_name" value="Jim"><br></div>
+									<div class="paragraph"> Player 2 Name: <input type="text" id="player2_name" name="player2_name" value="Bob"><br></div>
+									<div class="paragraph"> Player 3 Name: <input type="text" id="player3_name" name="player3_name" value="Cooter"><br></div>
+								</div>
+								<div id="chooseBackground">
+									<div class="head">Choose a Game Background:</div>
+									<div class="paragraph"><input type="radio" name="background" value="background1" id="background1" checked> <img class="backgroundImage" src="../img/background1.png"></input><br></div>
+									<div class="paragraph"><input type="radio" name="background" value="background2" id="background2"> <img class="backgroundImage" src="../img/background2.png"></input><br></div>
+									<div class="paragraph"><input type="radio" name="background" value="background3" id="background3"> <img class="backgroundImage" src="../img/background3.png"></input><br></div>
+									<div class="paragraph"><input type="radio" name="background" value="background4" id="background4"> <img class="backgroundImage" src="../img/background4.png"></input><br></div>
+									<div class="paragraph"><input type="radio" name="background" value="background5" id="background5"> <img class="backgroundImage" src="../img/background5.png"></input><br></div>
+									<div class="paragraph"><input type="radio" name="background" value="background6" id="background6"> <img class="backgroundImage" src="../img/background6.png"></input><br></div>
+								</div>
+								<div id="chooseCardback">
+									<div class="head">Choose a Card Background:</div>
+									<div class="paragraph"><input type="radio" name="cardback" value="cardback1" id="cardback1" checked> <img class="cardbackImage" src="../img/cardback1.png"></input><br></div>
+									<div class="paragraph"><input type="radio" name="cardback" value="cardback2" id="cardback2"> <img class="cardbackImage" src="../img/cardback2.png"></input><br></div>
+									<div class="paragraph"><input type="radio" name="cardback" value="cardback3" id="cardback3"> <img class="cardbackImage" src="../img/cardback3.png"></input><br></div>
+									<div class="paragraph"><input type="radio" name="cardback" value="cardback4" id="cardback4"> <img class="cardbackImage" src="../img/cardback4.png"></input><br></div>
+									<div class="paragraph"><input type="radio" name="cardback" value="cardback5" id="cardback5"> <img class="cardbackImage" src="../img/cardback5.png"></input><br></div>
+									<div class="paragraph"><input type="radio" name="cardback" value="cardback6" id="cardback6"> <img class="cardbackImage" src="../img/cardback6.png"></input><br></div>
+								</div>
+							</div>
 			      </div>
 
 			      <div class="modal-footer">
