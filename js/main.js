@@ -21,6 +21,7 @@ var last_played_card = 0;	// this indexes into list_of_cards
 var game_over = false;
 var cur_color = "none";		// this is used if a wild is played
 var clockwise_dir = true;
+var player_drawn_this_turn = false;
 // var num_to_drawF = 7;
 
 class Card {
@@ -257,6 +258,14 @@ function draw_animation(index)
 
 }
 
+// if player clicks deck, only draw if player's turn
+function check_draw_card() {
+	if (players[cur_player_index].human && !player_drawn_this_turn) {
+		player_drawn_this_turn = true;
+		draw_card(3, 1);
+	}
+}
+
 function draw_card(player_index, num_to_draw) {
 	// TODO add in actual loop  that draws multiple cards
 	// console.log(num_to_draw);
@@ -277,6 +286,7 @@ function delay_display_continue(player_index, num_to_draw){
 	display_cards();
 	// console.log("cards in hand for " + players[cur_player_index].name + " " + players[cur_player_index].hand.length);
 	console.log(players[player_index].name + " drew " + num_to_draw + " cards");
+	player_drawn_this_turn = false;
 	get_next_player();
 	play_game();
 }
@@ -546,22 +556,6 @@ function update_playable_cards(human_index) {
 	}
 }
 
-// use this to see if the player's card is acceptable, if not return it to screen 
-function player_card_valid(player_card_index) {
-	var player_card = list_of_cards[player_card_index];
-	var last_card = list_of_cards[last_played_card];
-	if (player_card.special == "wild" || player_card.special == "wild-draw-4") {
-		return true;
-	} else if (player_card.color == last_card.color) {
-		return true;
-	} else if (player_card.number == last_card.number && player_card.number != "none") {
-		return true;
-	} else if (player_card.special != "none" && player_card.special == last_card.special) {
-		return true;
-	}
-	return false;
-}
-
 
 function play_animation(index)
 {
@@ -578,6 +572,22 @@ function play_animation(index)
 		$("#p3slide").effect("drop", {direction:"left"}, 1000);
 	}
 
+}
+
+// use this to see if the player's card is acceptable, if not return it to screen 
+function player_card_valid(player_card_index) {
+	var player_card = list_of_cards[player_card_index];
+	var last_card = list_of_cards[last_played_card];
+	if (player_card.special == "wild" || player_card.special == "wild-draw-4") {
+		return true;
+	} else if (player_card.color == last_card.color) {
+		return true;
+	} else if (player_card.number == last_card.number && player_card.number != "none") {
+		return true;
+	} else if (player_card.special != "none" && player_card.special == last_card.special) {
+		return true;
+	}
+	return false;
 }
 
 
