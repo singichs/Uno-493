@@ -12,6 +12,16 @@ $( document ).ready(function(){
 	play_game();
 	console.log(players);
 
+	// var data = [];
+	// var url = document.location.href,
+ //        params = url.split('?')[1].split('&'),
+ //        data = {}, tmp;
+ //    for (var i = 0, l = params.length; i < l; i++) {
+ //         tmp = params[i].split('=');
+ //         data[tmp[0]] = tmp[1];
+ //    }
+ //    localStorage.setItem("names", JSON.stringify(data));
+
 
 
 });
@@ -67,10 +77,38 @@ function allowDrop(ev) {
 function initialize_players(num_cpu) {
 	// this should be some locally set variable for player's name
 	// can also change to for loop thru array of player's name if we want to have that option
-	players.push(new Player("Jim", false));
-	players.push(new Player("Bob", false));
-	players.push(new Player("Cooter", false));
-	players.push(new Player("human boi", true));
+	var value = JSON.parse(localStorage.getItem("names"));
+	console.log("value");
+	console.log(value);
+	if (value["p1"]) {
+		players.push(new Player(value["p1"], false));
+	}
+	if (value["p2"]) {
+		players.push(new Player(value["p2"], false));
+	} 
+	if (value["p3"]) {
+		players.push(new Player(value["p3"], false));
+	} 
+	let std_names = ["Cooter", "Bob", "Jim", ];
+	let name_idx = 0;
+	while (players.length < 3) {
+		console.log("pushing failure");
+		players.push(new Player(std_names[name_idx], false));
+		++name_idx;
+	}
+	// players.push(new Player("Jim", false));
+	// players.push(new Player("Bob", false));
+	// players.push(new Player("Cooter", false));
+	if (value["name"]) {
+		players.push(new Player(value["name"], true));
+	} else {
+		players.push(new Player("You", true));
+	}
+	// console.log(players);
+	for (let i = 0; i < (players.length - 1); i++) {
+		$("#p" + (i + 1) + "name").html(players[i].name);
+	}
+	$("currentUsr").html(players[3].name);
 }
 
 // turns out there are 108 cards in an UNO deck
@@ -646,7 +684,7 @@ window.setInterval(function(){
 
 var name = players[cur_player_index].name;
 
-if (name == "human boi")
+if (players[cur_player_index].human)
 {
 	document.getElementById("turn_announcement").innerHTML = "Your Turn";
 }

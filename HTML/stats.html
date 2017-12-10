@@ -12,6 +12,13 @@
   			integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="   crossorigin="anonymous"></script>
   		<script type="text/javascript" src="../js/main.js"></script>
   		<script type="text/javascript" src="../js/stats.js"></script>
+        <style type="text/css">
+            .navbar{
+                margin-top: -10%;
+                margin-left: -6%;
+                margin-right: -6%;
+            }
+        </style>
 	</head>
 	<body>
 		<nav class="navbar navbar-default navbar-fixed-top" id="nav">
@@ -41,7 +48,65 @@
 				</div>
 			</div>
 		</nav>
-		<h1 class="title"> STATS PAGE</h1>
+		<h1 class="title"> GAME STATS</h1>		
+		<div class="container">
+  			<div class="row">
+    			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+    				<div id="4stats">
+    					<h1 class="total" id="4name" style="color: green;">You</h1>
+    						<p id = "4points">points:</p>
+    						<p id = "4played">cards played:</p>
+    							<p id = "4blue"> </p>
+    							<p id = "4green"> </p>
+    							<p id = "4red"> </p>
+    							<p id = "4yellow"> </p>
+    						<p id = "4drawn">cards drawn:</p>
+    				</div>
+    			</div>
+    			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+    				<div id="1stats">
+    					<h1 class="total" id="1name" style="color:blue;">P1</h1>
+    						<p id = "1points">points:</p>
+    						<p id = "1played">cards played:</p>
+    							<p id = "1blue"> </p>
+    							<p id = "1green"> </p>
+    							<p id = "1red"> </p>
+    							<p id = "1yellow"> </p>
+    						<p id = "1drawn">cards drawn:</p>
+    				</div>
+    			</div>
+    			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+    				<div id="2stats">
+    					<h1 class="total" id="2name" style="color: red;">P2</h1>
+    						<p id = "2points">points:</p>
+    						<p id = "2played">cards played:</p>
+    							<p id = "2blue"> </p>
+    							<p id = "2green"> </p>
+    							<p id = "2red"> </p>
+    							<p id = "2yellow"> </p>
+    						<p id = "2drawn">cards drawn:</p>
+    				</div>
+    			</div>
+    			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+    				<div id="3stats">
+    					<h1 class="total" id="3name" style="color: yellow; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">P3</h1>
+    						<p id = "3points">points:</p>
+    						<p id = "3played">cards played:</p>
+    							<p id = "3blue"> </p>
+    							<p id = "3green"> </p>
+    							<p id = "3red"> </p>
+    							<p id = "3yellow"> </p>
+    						<p id = "3drawn">cards drawn:</p>
+    				</div>
+    			</div>
+  			</div>
+		</div>
+
 		<button id="game_over_screen">Back to Game Over Screen</button>
 	</body>
+		<div id="turn_announcement" style="visibility: hidden;"></div>
+		<div id="droppable" style="visibility: hidden;"></div>
+		<div id="span" style="visibility: hidden;"></div>
+		<div id="player4-hand" style="visibility: hidden;"></div>
+		<div id="player4-cards" style="visibility: hidden;"></div>
 </html>
