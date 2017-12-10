@@ -1,4 +1,6 @@
 $( document ).ready(function(){
+	var scale = 'scale(0.9)';
+	document.body.style.webkitTransform = document.body.style.msTransform = document.body.style.transform = scale;
 	localStorage.setItem("number_of_turns", "XXX");
 	localStorage.setItem("player_won", "yes");
 	initialize_players(3);
