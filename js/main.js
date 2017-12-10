@@ -580,7 +580,6 @@ function update_playable_cards(human_index) {
 			card_li.draggable( "enable" );
 			// card_li.addClass("ui-draggable");
 			// card_li.addClass("ui-draggable-handle");
-			card_li.addClass("card_highlight");
 		} else {
 			// remove the draggable class
 			card_li.removeClass("draggable");
