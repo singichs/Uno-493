@@ -1,4 +1,6 @@
 $( document ).ready(function(){
+	var scale = 'scale(0.9)';
+	document.body.style.webkitTransform = document.body.style.msTransform = document.body.style.transform = scale;
 	localStorage.setItem("number_of_turns", "XXX");
 	localStorage.setItem("player_won", "yes");
 	initialize_players(3);
@@ -626,7 +628,6 @@ function update_playable_cards(human_index) {
 			card_li.draggable({containment: 'window'} );
 			// card_li.addClass("ui-draggable");
 			// card_li.addClass("ui-draggable-handle");
-			card_li.addClass("card_highlight");
 		} else {
 			// remove the draggable class
 			card_li.removeClass("draggable");
