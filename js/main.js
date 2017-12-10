@@ -126,6 +126,10 @@ function deal_cards(num_cards_in_hand) {
 	}
 	console.log(players);
 	last_played_card = deck.pop();
+	while (list_of_cards[last_played_card].special == "wild-draw-4" || list_of_cards[last_played_card].special == "wild") {
+		deck.push(last_played_card);
+		last_played_card = deck.pop();
+	}
 	add_to_used_stack(last_played_card);
 	set_current_color();
 	console.log("last played card: " + list_of_cards[last_played_card].color + " " + list_of_cards[last_played_card].number + " " + list_of_cards[last_played_card].special)
