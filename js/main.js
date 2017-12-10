@@ -378,28 +378,39 @@ function play_card(loc_in_list) {
 }
 
 function get_color() {
-
-	if (players[cur_player_index].human) {
-		console.log("FUCK");
-		// have a pop up ask them for color
-		// Show wild card menu
-	    // document.getElementById("wildMenu").removeAttribute("class", "hide");
-	    // document.getElementById("wildMenu").onclick = function(event) {
-	    //   // Execute block if menu button is clicked
-	    //   if(event.target.parentNode.id === "wildMenu" && event.target.classList.contains("wildButton")) {
-	    //     // Hide wild card menu
-	    //     // document.getElementById("wildMenu").setAttribute("class", "hide");
-	    //     // // Set wild card color equal to id of clicked button
-	    //     // document.getElementById("discardPile").firstChild.setAttribute("class", "card " + event.target.id);
-	    //     // discardPile[0].color = event.target.id;
-	    //     console.log(event.target.id);
-	    //   }
-	    // };
-		return "red";
-	} else {
-		// just choose red for rn - run through and choose the color with most 
-		return "red";
+	let redCards = 0;
+	let yellowCards = 0;
+	let greenCards = 0;
+	let blueCards = 0;
+	for(var i = 0; i < players[cur_player_index].hand.length; i++){
+		if(list_of_cards[players[cur_player_index].hand[i]].color == "red"){
+			redCards++;
+		}
+		else if(list_of_cards[players[cur_player_index].hand[i]].color == "yellow"){
+			yellowCards++;
+		}
+		else if(list_of_cards[players[cur_player_index].hand[i]].color == "blue"){
+			blueCards++;
+		}
+		else if(list_of_cards[players[cur_player_index].hand[i]].color == "green"){
+			greenCards++;
+		}
 	}
+	let maxColor = redCards;
+	let nextColor = "red";
+	if(maxColor < yellowCards){
+		maxColor = yellowCards;
+		nextColor = "yellow";
+	}
+	if(maxColor < greenCards){
+		maxColor = greenCards;
+		nextColor = "green";
+	}
+	if(maxColor < blueCards){
+		maxColor = blueCards;
+		nextColor = "blue";
+	}
+	return nextColor;
 }
 
 // used to determine which player gets the next move
