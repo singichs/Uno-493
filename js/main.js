@@ -579,7 +579,7 @@ function update_playable_cards(human_index) {
 		let card_li = $("#" + players[human_index].hand[i])
 		card_li.draggable();
 		// console.log(card_li);
-		if (player_card_valid(players[human_index].hand[i])) {
+		if (player_card_valid(players[human_index].hand[i]) && players[cur_player_index].human) {
 
 			//console.log("card" + i + " playable")
 			// add the draggable class
