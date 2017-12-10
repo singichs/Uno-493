@@ -10,6 +10,8 @@ $( document ).ready(function(){
 	play_game();
 	console.log(players);
 
+
+
 });
 
 var list_of_cards = [];
@@ -126,6 +128,10 @@ function deal_cards(num_cards_in_hand) {
 	}
 	console.log(players);
 	last_played_card = deck.pop();
+	while (list_of_cards[last_played_card].special == "wild-draw-4" || list_of_cards[last_played_card].special == "wild") {
+		deck.push(last_played_card);
+		last_played_card = deck.pop();
+	}
 	add_to_used_stack(last_played_card);
 	set_current_color();
 	console.log("last played card: " + list_of_cards[last_played_card].color + " " + list_of_cards[last_played_card].number + " " + list_of_cards[last_played_card].special)
@@ -329,8 +335,9 @@ function play_card(loc_in_list) {
 	} else if (players[cur_player_index].hand.length == 0) {
 		console.log("game over, " + players[cur_player_index].name + " is the winner!");
 		game_over = true;
-		localStorage.setItem("players", players);
-		// window.location.href = "../HTML/end_game.html";
+		localStorage.setItem("players", JSON.stringify(players));
+		localStorage.setItem("player_won", players[cur_player_index].name);
+		window.location.href = "../HTML/end_game.html";
 	}
 	// console.log("checking specials: " + list_of_cards[last_played_card].special);
 	if (list_of_cards[last_played_card].special == "draw2") {
@@ -572,12 +579,13 @@ function update_playable_cards(human_index) {
 		let card_li = $("#" + players[human_index].hand[i])
 		card_li.draggable();
 		// console.log(card_li);
-		if (player_card_valid(players[human_index].hand[i])) {
+		if (player_card_valid(players[human_index].hand[i]) && players[cur_player_index].human) {
 
 			//console.log("card" + i + " playable")
 			// add the draggable class
 			card_li.addClass("draggable");
 			card_li.draggable( "enable" );
+			card_li.draggable({containment: 'window'} );
 			// card_li.addClass("ui-draggable");
 			// card_li.addClass("ui-draggable-handle");
 		} else {
