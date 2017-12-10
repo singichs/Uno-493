@@ -10,6 +10,8 @@ $( document ).ready(function(){
 	play_game();
 	console.log(players);
 
+
+
 });
 
 var list_of_cards = [];
@@ -19,16 +21,16 @@ var players = [];
 var cur_player_index = 0;
 var last_played_card = 0;	// this indexes into list_of_cards
 var game_over = false;
-var cur_color = "none";		// this is used if a wild is played
 var clockwise_dir = true;
 var player_drawn_this_turn = false;
 // var num_to_drawF = 7;
 
 class Card {
-	constructor(color, number, special) {
+	constructor(color, number, special, points) {
 		this.color = color;
 		this.number = number;
 		this.special = special;
+		this.points = points;
 	}
 }
 
@@ -37,6 +39,11 @@ class Player {
 		this.name = name;
 		this.hand = [];	// list of numbers that index into list_of_cards
 		this.human = human;	// this is true or false
+		this.points = 0;
+		this.cards_drawn = 0;
+		this.cards_played = 0;
+		this.total_cards = 7;
+		this.colors_played = {"blue": 0, "green": 0, "yellow": 0, "red": 0};
 	}
 }
 
@@ -69,28 +76,28 @@ function initialize_list() {
 	let colors = ["blue", "red", "green", "yellow"];
 	for (var i = 0; i < colors.length; i++) {
 		for (var num = 0; num < 10; num++) {
-			list_of_cards.push(new Card(colors[i], num.toString(), "none"));
+			list_of_cards.push(new Card(colors[i], num.toString(), "none", num));
 			if (num != 0) {
-				list_of_cards.push(new Card(colors[i], num.toString(), "none"));
+				list_of_cards.push(new Card(colors[i], num.toString(), "none", num));
 			}
 		}
 	}
 	for (var i = 0; i < colors.length; i++) {
 		for (var j = 0; j < 2; j++) {
-			list_of_cards.push(new Card(colors[i], "none", "draw2"));
+			list_of_cards.push(new Card(colors[i], "none", "draw2", 20));
 		}
 		for (var j = 0; j < 2; j++) {
-			list_of_cards.push(new Card(colors[i], "none", "skip"));
+			list_of_cards.push(new Card(colors[i], "none", "skip", 20));
 		}
 		for (var j = 0; j < 2; j++) {
-			list_of_cards.push(new Card(colors[i], "none", "reverse"));
+			list_of_cards.push(new Card(colors[i], "none", "reverse", 20));
 		}
 	}
 	for (var i = 0; i < 4; i++) {
-		list_of_cards.push(new Card("none", "none", "wild"));
+		list_of_cards.push(new Card("none", "none", "wild", 50));
 	}
 	for (var i = 0; i < 4; i++) {
-		list_of_cards.push(new Card("none", "none", "wild-draw-4"));
+		list_of_cards.push(new Card("none", "none", "wild-draw-4", 50));
 	}
 }
 
@@ -121,7 +128,12 @@ function deal_cards(num_cards_in_hand) {
 	}
 	console.log(players);
 	last_played_card = deck.pop();
+	while (list_of_cards[last_played_card].special == "wild-draw-4" || list_of_cards[last_played_card].special == "wild") {
+		deck.push(last_played_card);
+		last_played_card = deck.pop();
+	}
 	add_to_used_stack(last_played_card);
+	set_current_color();
 	console.log("last played card: " + list_of_cards[last_played_card].color + " " + list_of_cards[last_played_card].number + " " + list_of_cards[last_played_card].special)
 	// set number of cards remaining in hand
 	// player1-cards
@@ -273,6 +285,8 @@ function draw_card(player_index, num_to_draw) {
 	for (var i = 0; i < num_to_draw; i++) {
 		players[player_index].hand.push(deck.pop());
 	}
+	players[player_index].cards_drawn += num_to_draw;
+	players[player_index].total_cards += num_to_draw;
 	// console.log(players);
 	// console.log(players[3].hand)
 	draw_animation(player_index);
@@ -302,10 +316,12 @@ function play_card(loc_in_list) {
 	if (list_of_cards[last_played_card].color == "none" && list_of_cards[last_played_card].special != "none") {
 		list_of_cards[last_played_card].color = get_color();
 	}
-	
-	//players[cur_player_index].hand.splice(loc_in_hand, 1);
-	// find index of card in hand
 
+	// update scoring variables
+	players[cur_player_index].points += list_of_cards[last_played_card].points;
+	players[cur_player_index].cards_played += 1;
+	players[cur_player_index].colors_played[list_of_cards[last_played_card].color] += 1;
+	set_current_color();
 	var loc_in_hand = players[cur_player_index].hand.indexOf(Number(loc_in_list));
 	// console.log("location in hand removed: " + loc_in_hand);
 	// console.log("location searched for: " + loc_in_list);
@@ -319,6 +335,8 @@ function play_card(loc_in_list) {
 	} else if (players[cur_player_index].hand.length == 0) {
 		console.log("game over, " + players[cur_player_index].name + " is the winner!");
 		game_over = true;
+		localStorage.setItem("players", JSON.stringify(players));
+		localStorage.setItem("player_won", players[cur_player_index].name);
 		window.location.href = "../HTML/end_game.html";
 	}
 	// console.log("checking specials: " + list_of_cards[last_played_card].special);
@@ -367,28 +385,39 @@ function play_card(loc_in_list) {
 }
 
 function get_color() {
-
-	if (players[cur_player_index].human) {
-		console.log("FUCK");
-		// have a pop up ask them for color
-		// Show wild card menu
-	    document.getElementById("wildMenu").removeAttribute("class", "hide");
-	    document.getElementById("wildMenu").onclick = function(event) {
-	      // Execute block if menu button is clicked
-	      if(event.target.parentNode.id === "wildMenu" && event.target.classList.contains("wildButton")) {
-	        // Hide wild card menu
-	        // document.getElementById("wildMenu").setAttribute("class", "hide");
-	        // // Set wild card color equal to id of clicked button
-	        // document.getElementById("discardPile").firstChild.setAttribute("class", "card " + event.target.id);
-	        // discardPile[0].color = event.target.id;
-	        console.log(event.target.id);
-	      }
-	    };
-		return "red";
-	} else {
-		// just choose red for rn - run through and choose the color with most 
-		return "red";
+	let redCards = 0;
+	let yellowCards = 0;
+	let greenCards = 0;
+	let blueCards = 0;
+	for(var i = 0; i < players[cur_player_index].hand.length; i++){
+		if(list_of_cards[players[cur_player_index].hand[i]].color == "red"){
+			redCards++;
+		}
+		else if(list_of_cards[players[cur_player_index].hand[i]].color == "yellow"){
+			yellowCards++;
+		}
+		else if(list_of_cards[players[cur_player_index].hand[i]].color == "blue"){
+			blueCards++;
+		}
+		else if(list_of_cards[players[cur_player_index].hand[i]].color == "green"){
+			greenCards++;
+		}
 	}
+	let maxColor = redCards;
+	let nextColor = "red";
+	if(maxColor < yellowCards){
+		maxColor = yellowCards;
+		nextColor = "yellow";
+	}
+	if(maxColor < greenCards){
+		maxColor = greenCards;
+		nextColor = "green";
+	}
+	if(maxColor < blueCards){
+		maxColor = blueCards;
+		nextColor = "blue";
+	}
+	return nextColor;
 }
 
 // used to determine which player gets the next move
@@ -550,15 +579,15 @@ function update_playable_cards(human_index) {
 		let card_li = $("#" + players[human_index].hand[i])
 		card_li.draggable();
 		// console.log(card_li);
-		if (player_card_valid(players[human_index].hand[i])) {
+		if (player_card_valid(players[human_index].hand[i]) && players[cur_player_index].human) {
 
 			//console.log("card" + i + " playable")
 			// add the draggable class
 			card_li.addClass("draggable");
 			card_li.draggable( "enable" );
+			card_li.draggable({containment: 'window'} );
 			// card_li.addClass("ui-draggable");
 			// card_li.addClass("ui-draggable-handle");
-			card_li.addClass("card_highlight");
 		} else {
 			// remove the draggable class
 			card_li.removeClass("draggable");
@@ -605,6 +634,11 @@ function player_card_valid(player_card_index) {
 	return false;
 }
 
+
+function set_current_color() {
+	let cur_color = list_of_cards[last_played_card].color;
+	$("#turn_direction").attr("src","../img/3arrows" + cur_color + ".png");
+}
 
 window.setInterval(function(){
 
