@@ -19,7 +19,6 @@ var players = [];
 var cur_player_index = 0;
 var last_played_card = 0;	// this indexes into list_of_cards
 var game_over = false;
-var cur_color = "none";		// this is used if a wild is played
 var clockwise_dir = true;
 var player_drawn_this_turn = false;
 // var num_to_drawF = 7;
@@ -128,6 +127,7 @@ function deal_cards(num_cards_in_hand) {
 	console.log(players);
 	last_played_card = deck.pop();
 	add_to_used_stack(last_played_card);
+	set_current_color();
 	console.log("last played card: " + list_of_cards[last_played_card].color + " " + list_of_cards[last_played_card].number + " " + list_of_cards[last_played_card].special)
 	// set number of cards remaining in hand
 	// player1-cards
@@ -315,7 +315,7 @@ function play_card(loc_in_list) {
 	players[cur_player_index].points += list_of_cards[last_played_card].points;
 	players[cur_player_index].cards_played += 1;
 	players[cur_player_index].colors_played[list_of_cards[last_played_card].color] += 1;
-
+	set_current_color();
 	var loc_in_hand = players[cur_player_index].hand.indexOf(Number(loc_in_list));
 	// console.log("location in hand removed: " + loc_in_hand);
 	// console.log("location searched for: " + loc_in_list);
@@ -616,6 +616,11 @@ function player_card_valid(player_card_index) {
 	return false;
 }
 
+
+function set_current_color() {
+	let cur_color = list_of_cards[last_played_card].color;
+	$("#turn_direction").attr("src","../img/3arrows" + cur_color + ".png");
+}
 
 window.setInterval(function(){
 
