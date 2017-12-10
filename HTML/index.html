@@ -105,6 +105,7 @@
 							<input type="radio" name="cardback" value="cardback3" id="cardback3"> <img class="cardbackImage" src="../img/cardback3.png"><br> 
 							<input type="radio" name="cardback" value="cardback4" id="cardback4"> <img class="cardbackImage" src="../img/cardback4.png"><br> 
 							<input type="radio" name="cardback" value="cardback5" id="cardback5"> <img class="cardbackImage" src="../img/cardback5.png"><br> 
+							<input type="radio" name="cardback" value="cardback6" id="cardback6"> <img class="cardbackImage" src="../img/cardback6.png"><br> 
 
 			      </div>
 
@@ -163,6 +164,9 @@
 		}
 		else if (document.getElementById("cardback5").checked) {
 			cbImg = 5;
+		}
+		else if (document.getElementById("cardback6").checked) {
+			cbImg = 6;
 		}
 
 		location.href = "game.html?name=" + name + "&p1=" + p1 + "&p2=" + p2 + "&p3=" + p3 + "&bgImg=" + bgImg + "&cbImg=" + cbImg;

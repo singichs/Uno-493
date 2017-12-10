@@ -21,6 +21,7 @@ var last_played_card = 0;	// this indexes into list_of_cards
 var game_over = false;
 var cur_color = "none";		// this is used if a wild is played
 var clockwise_dir = true;
+var player_drawn_this_turn = false;
 // var num_to_drawF = 7;
 
 class Card {
@@ -120,6 +121,7 @@ function deal_cards(num_cards_in_hand) {
 	}
 	console.log(players);
 	last_played_card = deck.pop();
+	add_to_used_stack(last_played_card);
 	console.log("last played card: " + list_of_cards[last_played_card].color + " " + list_of_cards[last_played_card].number + " " + list_of_cards[last_played_card].special)
 	// set number of cards remaining in hand
 	// player1-cards
@@ -256,6 +258,14 @@ function draw_animation(index)
 
 }
 
+// if player clicks deck, only draw if player's turn
+function check_draw_card() {
+	if (players[cur_player_index].human && !player_drawn_this_turn) {
+		player_drawn_this_turn = true;
+		draw_card(3, 1);
+	}
+}
+
 function draw_card(player_index, num_to_draw) {
 	// TODO add in actual loop  that draws multiple cards
 	// console.log(num_to_draw);
@@ -265,13 +275,20 @@ function draw_card(player_index, num_to_draw) {
 	}
 	// console.log(players);
 	// console.log(players[3].hand)
+	draw_animation(player_index);
+	setTimeout(delay_display_continue(player_index, num_to_draw), 2000);
+	//delay_display_continue(player_index, num_to_draw);
+}
+
+function delay_display_continue(player_index, num_to_draw){
 	let p4hand = document.getElementById('player4-cards');
 	p4hand.innerHTML = "";
-	draw_animation(player_index);
 	display_cards();
 	// console.log("cards in hand for " + players[cur_player_index].name + " " + players[cur_player_index].hand.length);
 	console.log(players[player_index].name + " drew " + num_to_draw + " cards");
+	player_drawn_this_turn = false;
 	get_next_player();
+	play_game();
 }
 
 function play_card(loc_in_list) {
@@ -292,6 +309,7 @@ function play_card(loc_in_list) {
 	var loc_in_hand = players[cur_player_index].hand.indexOf(Number(loc_in_list));
 	// console.log("location in hand removed: " + loc_in_hand);
 	// console.log("location searched for: " + loc_in_list);
+	play_animation(cur_player_index);
 	players[cur_player_index].hand.splice(loc_in_hand, 1);
 	add_to_used_stack(loc_in_list);
 
@@ -334,7 +352,12 @@ function play_card(loc_in_list) {
 	} else if (list_of_cards[last_played_card].special == "reverse") {
 		if (clockwise_dir) {
 			clockwise_dir = false;
+			$("#turn_direction").removeClass("arrow-clockwise");
+			$("#turn_direction").addClass("arrow-counterclockwise");
+
 		} else {
+			$("#turn_direction").removeClass("arrow-counterclockwise");
+			$("#turn_direction").addClass("arrow-clockwise");
 			clockwise_dir = true;
 		}
 	} else if (list_of_cards[last_played_card].special == "skip") {
@@ -514,7 +537,7 @@ function update_playable_cards(human_index) {
 		// console.log(card_li);
 		if (player_card_valid(players[human_index].hand[i])) {
 
-			console.log("card" + i + " playable")
+			//console.log("card" + i + " playable")
 			// add the draggable class
 			card_li.addClass("draggable");
 			card_li.draggable( "enable" );
@@ -531,6 +554,24 @@ function update_playable_cards(human_index) {
 		card_li.removeClass("ui-draggable");
 		card_li.removeClass("ui-draggable-handle");
 	}
+}
+
+
+function play_animation(index)
+{
+	if (index == 0)
+	{
+		$("#p1slide").effect("drop", {direction:"right"}, 1000);
+	}
+	else if (index == 1)
+	{
+		$("#p2slide").effect("drop", {direction:"down"}, 1000);
+	}
+	else if (index == 2)
+	{
+		$("#p3slide").effect("drop", {direction:"left"}, 1000);
+	}
+
 }
 
 // use this to see if the player's card is acceptable, if not return it to screen 
@@ -552,7 +593,7 @@ function player_card_valid(player_card_index) {
 
 window.setInterval(function(){
 
-name = players[cur_player_index].name;
+var name = players[cur_player_index].name;
 
 if (name == "human boi")
 {
@@ -564,7 +605,3 @@ else
 }
 
 }, 50);
-
-
-
-
