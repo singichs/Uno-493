@@ -49,23 +49,63 @@
 			</div>
 			<button class="btn btn-default" id="submitButton" onclick="tempFunction()">Start the Game!</button>
 			</br>
-			<button class="btn btn-default" id="submitButton" data-toggle="modal" data-target="#exampleModal">Instructions</button>
+			<button class="btn btn-default" id="submitButton" data-toggle="modal" data-target="#informationModal">Instructions</button>
 			<!-- Modal -->
-			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="informationModalLabel" aria-hidden="true">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
+
 			      <div class="modal-header">
-			        <h5 class="modal-title" id="exampleModalLabel">UNO Instructions</h5>
+			        <h5 class="modal-title" id="informationModalLabel">UNO Instructions</h5>
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			          <span aria-hidden="true">&times;</span>
 			        </button>
 			      </div>
+
 			      <div class="modal-body">
-			        Put intructions for Uno here!
+							<div id="infoContainer">
+								<div id="rulesContainer">
+									<div class="head">How to play?</div>
+									<div class="paragraph">The object of the game is to get rid of all your cards. To win, you have to do this before any of the three other computer players do!</div>
+									<div class="paragraph">Every player starts with seven cards, and they are dealt face down. You can only see your hand. The rest of the cards are placed in a Draw Pile face down. Next to the pile, there is a Discard Pile for all the cards that have been played.</div>
+									<div class="paragraph">Play your cards by matching the card on the discard pile in number, color, or type. For example, if the card on the discard pile is a yellow 5 you can play any number 5 card, any yellow card, or a wild card.</div>
+									<div class="paragraph">If you can't match the card on the discard pile (or choose not to play a card) you must draw a card and game play will move on to the next player.</div>
+									<div class="paragraph">When the Draw Pile becomes depleted, all of the cards in the discard pile will be shuffled and added to the draw pile.</div>
+								</div>
+								<div id="specialCardsContainer">
+									<div class="head">Special Cards</div>
+									<div class="paragraph"><span class="paragraphHead">Skip</span><br>When a player places this card, the next player has to skip their turn.</div>
+									<div class="paragraph"><span class="paragraphHead">Draw Two</span><br>When a person places this card, the next player will have to pick up two cards and forfeit his/her turn.</div>
+									<div class="paragraph"><span class="paragraphHead">Reverse</span><br>If gameplay is going clockwise, switch to counterclockwise or vice versa.</div>
+									<div class="paragraph"><span class="paragraphHead">Wild</span><br>This card represents all four colors, and can be placed on any card. The color will be chosen for you based on the most frequest color in your hand. It can be played regardless of whether another card is available.</div>
+									<div class="paragraph"><span class="paragraphHead">Wild Draw Four</span><br>This acts just like the wild card except that the next player also has to draw four cards as well as forfeit his/her turn.</div>
+								</div>
+								<div id="scoring">
+									<div class="head">Scoring</div>
+									<div class="paragraph">Each player will accumulate points based on the cards that they play. All number cards are the same value as the number on the card. For example, a Red 9 card will get you 9 points.</div>
+									<div class="paragraph">Special cards will get you points as follows:</div>
+									<div class="bullet">“Draw Two" – 20 Points</div>
+									<div class="bullet">“Reverse" – 20 Points</div>
+									<div class="bullet">“Skip" – 20 Points</div>
+									<div class="bullet">“Wild" – 50 Points</div>
+									<div class="bullet">“Wild Draw Four" – 50 Points. </div>
+									<div class="paragraph">Points do not determine the victor but instead just act as an additional element for bragging rights.</div>
+								</div>
+								<div id="about">
+									<div class="head">About us</div>
+									<div class="paragraph">This game was built by four computer science students in EECS 493 at The University of Michigan: Nithin Adapa, Zain Ahmed, Joe Kunnath, Sagar Singichetti</div>
+									<div class="paragraph">We built this game using HTML, CSS, Javascript, JQuery, JQueryUI and Bootstrap.</div>
+									<div class="paragraph"><center>If you have any comments, questions, or concerns, <br>please contact us at <a href="mailto:uno-lads-493@umich.edu">uno-lads-493@umich.edu</center></a></div>
+								</div>
+							</div>
+
+
 			      </div>
+
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			      </div>
+
 			    </div>
 			  </div>
 			</div>
