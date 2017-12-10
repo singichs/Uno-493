@@ -1,9 +1,9 @@
 $( document ).ready(function() {
 	console.log("load stats page");
-	$("#game_over_screen").click(function() {
-		go_to_game_over_screen();
-	});
 	var value = JSON.parse(localStorage.getItem("players"));
+	var winner = localStorage.getItem("player_won");
+	console.log(winner);
+	$("#winner").html(winner + " has won the game!");
 	for (var i = 0; i < value.length; i++) {
 		console.log(value[i]);
 		document.getElementById((i+1) + "name").innerHTML = value[i].name;

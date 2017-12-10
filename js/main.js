@@ -1,8 +1,6 @@
 $( document ).ready(function(){
 	var scale = 'scale(0.9)';
 	document.body.style.webkitTransform = document.body.style.msTransform = document.body.style.transform = scale;
-	localStorage.setItem("number_of_turns", "XXX");
-	localStorage.setItem("player_won", "yes");
 	initialize_players(3);
 	initialize_list();
 
@@ -92,7 +90,6 @@ function initialize_players(num_cpu) {
 	let std_names = ["Cooter", "Bob", "Jim", ];
 	let name_idx = 0;
 	while (players.length < 3) {
-		console.log("pushing failure");
 		players.push(new Player(std_names[name_idx], false));
 		++name_idx;
 	}
@@ -100,15 +97,20 @@ function initialize_players(num_cpu) {
 	// players.push(new Player("Bob", false));
 	// players.push(new Player("Cooter", false));
 	if (value["name"]) {
-		players.push(new Player(value["name"], true));
+		let user_name = value["name"];
+		user_name = user_name.replace(/%20/g, " ");
+		console.log("user name: " + user_name);
+		players.push(new Player(user_name, true));
 	} else {
 		players.push(new Player("You", true));
 	}
 	// console.log(players);
 	for (let i = 0; i < (players.length - 1); i++) {
+		console.log(i);
 		$("#p" + (i + 1) + "name").html(players[i].name);
 	}
-	$("currentUsr").html(players[3].name);
+	console.log("current user: " + players[3].name);
+	$("#currentUsr").html(players[3].name);
 }
 
 // turns out there are 108 cards in an UNO deck
@@ -377,7 +379,7 @@ function play_card(loc_in_list) {
 		game_over = true;
 		localStorage.setItem("players", JSON.stringify(players));
 		localStorage.setItem("player_won", players[cur_player_index].name);
-		window.location.href = "../HTML/end_game.html";
+		window.location.href = "../HTML/stats.html";
 	}
 	// console.log("checking specials: " + list_of_cards[last_played_card].special);
 	if (list_of_cards[last_played_card].special == "draw2") {
